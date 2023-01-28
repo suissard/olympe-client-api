@@ -1,16 +1,16 @@
-import OlympeApi from './src/api/OlympeApi'
-import ApiChallenge from './src/api/routes/ApiChallenges'
-import ApiDiscord from './src/api/routes/ApiDiscord'
-import ApiInvitation from './src/api/routes/ApiInvitation'
-import ApiMarketPlace from './src/api/routes/ApiMarketPlace'
-import ApiMatchs from './src/api/routes/ApiMatchs'
-import ApiOrganization from './src/api/routes/ApiOrganization'
-import ApiPool from './src/api/routes/ApiPool'
-import ApiSegment from './src/api/routes/ApiSegment'
-import ApiStep from './src/api/routes/ApiStep'
-import ApiTeams from './src/api/routes/ApiTeams'
-import ApiTicket from './src/api/routes/ApiTicket'
-import ApiUsers from './src/api/routes/ApiUsers'
+import OlympeApi from "./src/OlympeApi.js";
+import ApiChallenge from "./src/routes/ApiChallenges.js";
+import ApiDiscord from "./src/routes/ApiDiscord";
+import ApiInvitation from "./src/routes/ApiInvitation";
+import ApiMarketPlace from "./src/routes/ApiMarketPlace";
+import ApiMatchs from "./src/routes/ApiMatchs";
+import ApiOrganization from "./src/routes/ApiOrganization";
+import ApiPool from "./src/routes/ApiPool";
+import ApiSegment from "./src/routes/ApiSegment";
+import ApiStep from "./src/routes/ApiStep";
+import ApiTeams from "./src/routes/ApiTeams";
+import ApiTicket from "./src/routes/ApiTicket";
+import ApiUsers from "./src/routes/ApiUsers";
 
 exports.OlympeApi = OlympeApi
 exports.ApiChallenge = ApiChallenge
