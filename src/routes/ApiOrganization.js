@@ -1,10 +1,10 @@
-import ApiRoute from '../ApiRoute.js'
+const ApiRoute = require('../ApiRoute.js')
 
 
 /**
  * Differentes méthodes associés aux routes de l'Api
  */
-export default class ApiOrganization extends ApiRoute {
+module.exports = class ApiOrganization extends ApiRoute {
    /**
     * Get a organization configs
     *

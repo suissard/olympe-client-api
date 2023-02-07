@@ -1,9 +1,9 @@
-import ApiRoute from '../ApiRoute.js'
+const ApiRoute = require('../ApiRoute.js')
 
 /**
  * Différentes méthodes associées aux routes de l'api
  */
-export default class ApiMarketPlace extends ApiRoute {
+module.exports = class ApiMarketPlace extends ApiRoute {
    list(challengeID, page, segmentId, teamName, usersNationalitie, usersPreference) {
       const query = this.api.jsonToFormUrlEncoder({
          challengeID,

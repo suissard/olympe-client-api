@@ -7,4 +7,4 @@ const allowedFields = {
    },
 }
 
-export default allowedFields
+module.exports = allowedFields

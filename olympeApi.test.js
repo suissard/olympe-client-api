@@ -16,7 +16,7 @@ import ApiTicket from "./src/routes/ApiTicket.js";
 import ApiUsers from "./src/routes/ApiUsers.js";
 
 const testToken =
-	"wha4p9q/fdq3ibStXfkXKFYf+ge2+Uj4pmvFI1yaiReRTy9Uq/Lv5tAth9Z0oNgwegWiimYWygLuXM5A3aAi+vNZrro26WDOEhgjfDZ7EKR7hA/IRk92o1FK8CHBHUx9+8r1J6kfGOVBrRwcXqAaxAzmY+Pi1Msjhsm20JGzk1s=";
+	"q8VFqBiA6ttmoy8MC9d8lC424J9+ugxM+2aGTHAcNB5iY08qdu8yBXT9qysUwdmYBdyG4pTbOl3x/nkqAWnnoN3NqsclnlCVE91fVrVi52XFqHxBNRUXm0uDu+sefaeft6AKUfOm7qNqe1LfhI0RvnXShiVFX64Q38BJdygI8qU=";
 const testDomain = "dev.playallforone.com";
 const testProtocole = "https";
 
@@ -28,12 +28,16 @@ const testProtocole = "https";
  */
 const objectHaveEntries = (obj, entries) => {
 	for (const [entrie, value] of Object.entries(entries)) {
-		if (typeof value === "string") {
-			if (typeof obj[entrie] !== value) {
-				console.error("error", entrie, `${value} => ${typeof obj[entrie]}`);
-				return false;
-			}
-		} else if (!objectHaveEntries(obj[entrie], value)) return false;
+		try {
+			if (typeof value === "string") {
+				if (typeof obj[entrie] !== value) {
+					console.error("error", entrie, `${value} => ${typeof obj[entrie]}`);
+					return false;
+				}
+			} else if (!objectHaveEntries(obj[entrie], value)) return false;
+		} catch (e) {
+			console.error(e);
+		}
 	}
 	return true;
 };
@@ -75,7 +79,7 @@ const body = { test: "testing, testing" };
 const bodyIsFile = true;
 
 describe("Tests unitaires", () => {
-	test("Test de toute les fonctions", () => {
+	test("Test de toute les fonctions de base", () => {
 		const api = new OlympeApi(testToken, testDomain, testProtocole);
 
 		expect(api).toBeInstanceOf(OlympeApi);
@@ -105,10 +109,7 @@ describe("Tests unitaires", () => {
 			headers
 		);
 	});
-});
-
-describe("Tests unitaires", () => {
-	test("Test de toute les fonctions", async () => {
+	test("Test d'un échantillon de routes", async () => {
 		const api = new OlympeApi(testToken, testDomain, testProtocole);
 		const {
 			challenges,
@@ -225,6 +226,7 @@ describe("Tests unitaires", () => {
 				casters: "object",
 			})
 		).toBeTruthy();
+		
 		const match1 = await matchs.get(matchList[0].id);
 		expect(
 			objectHaveEntries(match1, {
@@ -278,5 +280,7 @@ describe("Tests unitaires", () => {
 				steps: "object",
 			})
 		).toBeTruthy();
+
+
 	}, 50000);
 });

@@ -1,11 +1,11 @@
-import ApiRoute from '../ApiRoute.js';
+const ApiRoute = require('../ApiRoute.js');
 
 const user = (data) => ({ ...data, username: data.username || 'No username' });
 
 /**
  * Différentes méthodes associées aux routes de l'api
  */
-export default class ApiUser extends ApiRoute {
+module.exports = class ApiUser extends ApiRoute {
    /**
     * Get user data by id
     *

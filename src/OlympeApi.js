@@ -1,23 +1,23 @@
-import fetch from "node-fetch";
-import { Headers } from "node-fetch";
+const fetch = require("isomorphic-fetch");
+const { Headers } = require("isomorphic-fetch");
 
-import ApiChallenge from "./routes/ApiChallenges";
-import ApiDiscord from "./routes/ApiDiscord";
-import ApiInvitation from "./routes/ApiInvitation";
-import ApiMarketPlace from "./routes/ApiMarketPlace";
-import ApiMatchs from "./routes/ApiMatchs";
-import ApiOrganization from "./routes/ApiOrganization";
-import ApiPool from "./routes/ApiPool";
-import ApiSegment from "./routes/ApiSegment";
-import ApiStep from "./routes/ApiStep";
-import ApiTeams from "./routes/ApiTeams";
-import ApiTicket from "./routes/ApiTicket";
-import ApiUsers from "./routes/ApiUsers";
+const ApiChallenge = require("./routes/ApiChallenges");
+const ApiDiscord = require("./routes/ApiDiscord");
+const ApiInvitation = require("./routes/ApiInvitation");
+const ApiMarketPlace = require("./routes/ApiMarketPlace");
+const ApiMatchs = require("./routes/ApiMatchs");
+const ApiOrganization = require("./routes/ApiOrganization");
+const ApiPool = require("./routes/ApiPool");
+const ApiSegment = require("./routes/ApiSegment");
+const ApiStep = require("./routes/ApiStep");
+const ApiTeams = require("./routes/ApiTeams");
+const ApiTicket = require("./routes/ApiTicket");
+const ApiUsers = require("./routes/ApiUsers");
 
 /**
  * Gestion des requêtes à l'API
  */
-export default class OlympeApi {
+module.exports = class OlympeApi {
 	constructor(token, domain = "playallforone.com", protocole = "https") {
 		this.token = token;
 		this.domain = domain;

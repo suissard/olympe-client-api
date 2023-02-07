@@ -1,3 +1,3 @@
-import test from './';
+const test = require( "./index.js");
 
 console.log(test);

@@ -1,4 +1,4 @@
-import ApiRoute from '../ApiRoute.js'
+const ApiRoute = require('../ApiRoute.js')
 
 
 const team = (data) => ({
@@ -16,7 +16,7 @@ const team = (data) => ({
 /**
  * Différentes méthodes associées aux routes de l'api
  */
-export default class ApiTeam extends ApiRoute {
+module.exports = class ApiTeam extends ApiRoute {
    // === Get teams(s)
    /**
     * Get a team

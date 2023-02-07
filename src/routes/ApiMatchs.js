@@ -1,10 +1,10 @@
-import ApiRoute from '../ApiRoute.js'
+const ApiRoute = require('../ApiRoute.js')
 
 
 /**
  * Différentes méthodes associées aux routes de l'api
  */
-export default class ApiMatch extends ApiRoute {
+module.exports = class ApiMatch extends ApiRoute {
    // ==== Get match(s) ====
    /**
     *
@@ -108,7 +108,7 @@ export default class ApiMatch extends ApiRoute {
    }
 
    /**
-    * Remove a caster (me) from the match
+    * Remove a caster (me) = require(the match
     *
     * @param {String} matchID Match ID
     */
