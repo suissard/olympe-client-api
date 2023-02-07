@@ -1,5 +1,5 @@
-const fetch = require("isomorphic-fetch");
-const { Headers } = require("isomorphic-fetch");
+const fetch = require("cross-fetch");
+const { Headers } = fetch;
 
 const ApiChallenge = require("./routes/ApiChallenges");
 const ApiDiscord = require("./routes/ApiDiscord");
