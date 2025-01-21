@@ -18,9 +18,10 @@ const ApiUsers = require("./routes/ApiUsers");
  * Gestion des requêtes à l'API
  */
 module.exports = class OlympeApi {
-	constructor(token, domain = "playallforone.com", protocole = "https") {
+	constructor(token, domain = "playallforone.com", xDomain="www.playallforone.com",  protocole = "https") {
 		this.token = token;
 		this.domain = domain;
+		this.xDomain = xDomain;
 		this.protocole = protocole;
 
 		//Routes
@@ -52,7 +53,7 @@ module.exports = class OlympeApi {
 	 * @returns {Headers} Header avec authorization bearer
 	 */
 	getHeader(bodyIsFile = false) {
-		const header = {};
+		const header = { "x-domain": this.xDomain };
 		if (!bodyIsFile) header["Content-Type"] = "application/x-www-form-urlencoded";
 		if (this.token) header.Authorization = `Bearer ${this.token}`;
 		return new Headers(header);
