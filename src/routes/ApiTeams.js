@@ -26,14 +26,14 @@ module.exports = class ApiTeam extends ApiRoute {
     * @param {['thirdpartiesDiscord' | 'battlenetBtag' | 'email']} [fields.userFields]
     */
    get(teamID, fields) {
-      return this.api.GET(`teams/${teamID}${this.api.getFields(fields)}`).then((data) => team(data))
+      return this.api.get(`teams/${teamID}${this.api.getFields(fields)}`).then((data) => team(data))
    }
 
    /**
     * Liste des teams
     */
    list() {
-      return this.api.GET('teams').then((list) => list.map((data) => team(data)))
+      return this.api.get('teams').then((list) => list.map((data) => team(data)))
    }
 
    // ==== Manage team ====
@@ -46,7 +46,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @return {Object} Team
     */
    create(name, nationality) {
-      return this.api.POST('teams', { name, nationality }).then((data) => team(data))
+      return this.api.post('teams', { name, nationality }).then((data) => team(data))
    }
 
    /**
@@ -55,7 +55,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @param {String} teamID
     */
    delete(teamID) {
-      return this.api.DELETE(`teams/${teamID}`)
+      return this.api.delete(`teams/${teamID}`)
    }
 
    /**
@@ -65,7 +65,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @param {Object} data Réseaux sociaux
     */
    putExternalLinks(teamID, data) {
-      return this.api.PUT(`teams/${teamID}/external-links`, data)
+      return this.api.put(`teams/${teamID}/external-links`, data)
    }
 
    /**
@@ -76,7 +76,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @param {Boolean} file Si une image est envoyée, cette variable doit être définie sur `true`
     */
    update(teamID, data, file = false) {
-      return this.api.PUT(`teams/${teamID}`, data, file)
+      return this.api.put(`teams/${teamID}`, data, file)
    }
 
    /**
@@ -86,11 +86,11 @@ module.exports = class ApiTeam extends ApiRoute {
     * @param {Array} role Allowed values: ['owner', 'president', 'vice president', 'staff', 'communication', 'esport director', 'manager', 'assistant manager', 'head coach', 'video analyst', 'mental coach']
     */
    addRoleToUser(teamID, memberID, role) {
-      return this.api.POST(`teams/${teamID}/members/${memberID}/roles`, { role })
+      return this.api.post(`teams/${teamID}/members/${memberID}/roles`, { role })
    }
 
    removeRoleToUser(teamID, memberID, role) {
-      return this.api.DELETE(`teams/${teamID}/members/${memberID}/roles`, { role })
+      return this.api.delete(`teams/${teamID}/members/${memberID}/roles`, { role })
    }
 
    /**
@@ -101,7 +101,7 @@ module.exports = class ApiTeam extends ApiRoute {
     *
     */
    removeUser(teamID, memberID) {
-      return this.api.DELETE(`teams/${teamID}/members/${memberID}`)
+      return this.api.delete(`teams/${teamID}/members/${memberID}`)
    }
 
    /**
@@ -111,20 +111,20 @@ module.exports = class ApiTeam extends ApiRoute {
 	 * @param {Array} gameRoles List of game roles with comma. Allowed values: ['main tank', 'off tank', 'dps hitscan', 'dps projectile', 'main heal', 'flex heal']. Example: 'main tank,main heal'
 	 */
    updateMemberTags(teamID, memberID, gameRoles) {
-      return this.api.PUT(`teams/${teamID}/members/${memberID}/tags`, { gameRoles })
+      return this.api.put(`teams/${teamID}/members/${memberID}/tags`, { gameRoles })
    }
 
    // ==== Invitations ====
    applyToJoin(teamID) {
-      return this.api.POST(`teams/${teamID}/apply`)
+      return this.api.post(`teams/${teamID}/apply`)
    }
 
    inviteUserToJoin(teamID, battlenetBtag) {
-      return this.api.POST(`teams/${teamID}/invitations`, { battlenetBtag })
+      return this.api.post(`teams/${teamID}/invitations`, { battlenetBtag })
    }
 
    listMemberInvitation(teamID) {
-      return this.api.GET(`teams/${teamID}/invitations`)
+      return this.api.get(`teams/${teamID}/invitations`)
    }
 
    // ==== Lineup ====
@@ -133,7 +133,7 @@ module.exports = class ApiTeam extends ApiRoute {
          throw 'API : Les users ID fournis doivent etre dans un Array'
       }
 
-      return this.api.POST(`teams/${teamID}/lineups`, {
+      return this.api.post(`teams/${teamID}/lineups`, {
          name,
          usersID: usersID.join(','),
          substitutesID: substitutesID.length ? substitutesID.join(',') : '',
@@ -142,7 +142,7 @@ module.exports = class ApiTeam extends ApiRoute {
 
    listLineups(teamID) {
       const urlAdd = teamID ? `?${this.api.jsonToFormUrlEncoder({ teamID })}` : ''
-      return this.api.GET(`lineups${urlAdd}`)
+      return this.api.get(`lineups${urlAdd}`)
    }
 
    // ==== Actu ====
@@ -153,7 +153,7 @@ module.exports = class ApiTeam extends ApiRoute {
     *
     */
    getPublicActus(teamID) {
-      return this.api.GET(`teams/${teamID}/histories`)
+      return this.api.get(`teams/${teamID}/histories`)
    }
 
    /**
@@ -161,7 +161,7 @@ module.exports = class ApiTeam extends ApiRoute {
 	 * @param {String} teamID => Id of team
 	 */
    getStats(teamID) {
-      return this.api.GET(`teams/${teamID}/stats`)
+      return this.api.get(`teams/${teamID}/stats`)
    }
 
    /**
@@ -169,7 +169,7 @@ module.exports = class ApiTeam extends ApiRoute {
 	 * @param {String} teamID => Id of team
 	 */
    follow(teamID) {
-      return this.api.POST(`teams/${teamID}/follow`)
+      return this.api.post(`teams/${teamID}/follow`)
    }
 }
 

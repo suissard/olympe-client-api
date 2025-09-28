@@ -14,7 +14,7 @@ module.exports = class ApiMarketPlace extends ApiRoute {
          usersPreference,
       })
 
-      return this.api.GET(`marketplace/users/available?${query}`)
+      return this.api.get(`marketplace/users/available?${query}`)
    }
 
    getHistory(page, filters, challengeId, baseId) {
@@ -28,7 +28,7 @@ module.exports = class ApiMarketPlace extends ApiRoute {
          ...(baseId && { baseID: baseId }),
       })
 
-      return this.api.GET(`marketplace/histories?${query}`)
+      return this.api.get(`marketplace/histories?${query}`)
    }
 
    getQuota(challengeId, teamId) {
@@ -37,7 +37,7 @@ module.exports = class ApiMarketPlace extends ApiRoute {
          ...(teamId && { teamID: teamId }),
       })
 
-      return this.api.GET(`marketplace/quotas?${query}`)
+      return this.api.get(`marketplace/quotas?${query}`)
    }
 
    /**
@@ -53,7 +53,7 @@ module.exports = class ApiMarketPlace extends ApiRoute {
     * @return {Promise}
     */
    sendInvit(payload) {
-      return this.api.POST('marketplace/users/invitations', payload)
+      return this.api.post('marketplace/users/invitations', payload)
    }
 }
 

@@ -11,7 +11,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @param {Number} challengeId
     */
    list(challengeId) {
-      return this.api.GET(`challenges/${challengeId}/steps`)
+      return this.api.get(`challenges/${challengeId}/steps`)
    }
 
    /**
@@ -22,7 +22,7 @@ module.exports = class ApiStep extends ApiRoute {
    getRanking(idChallenge, idStep, query) {
       const urlAdd = query ? `?${this.api.jsonToFormUrlEncoder(query)}` : ''
 
-      return this.api.GET(`challenges/${idChallenge}/steps/${idStep}/ranking${urlAdd}`)
+      return this.api.get(`challenges/${idChallenge}/steps/${idStep}/ranking${urlAdd}`)
    }
 }
 

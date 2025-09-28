@@ -11,7 +11,7 @@ module.exports = class ApiSegment extends ApiRoute {
     * @param {Number} challengeID
     */
    list(challengeID) {
-      return this.api.GET(`challenges/${challengeID}/segments`)
+      return this.api.get(`challenges/${challengeID}/segments`)
    }
 }
 

@@ -13,7 +13,7 @@ module.exports = class ApiTicket extends ApiRoute {
     */
    list(challengeId, active) {
       const urlAdd = active ? `?${this.api.jsonToFormUrlEncoder({ active: 'true' })}` : ''
-      return this.api.GET(`challenges/${challengeId}/tickets${urlAdd}`)
+      return this.api.get(`challenges/${challengeId}/tickets${urlAdd}`)
    }
 
    /**
@@ -25,7 +25,7 @@ module.exports = class ApiTicket extends ApiRoute {
     * @param {String} ticketType  Ticket type: personal or team
     */
    buy(challengeId, idTicket, teamID, ticketType) {
-      return this.api.POST(`challenges/${challengeId}/tickets/${idTicket}`, { idTeam: teamID, ticketType })
+      return this.api.post(`challenges/${challengeId}/tickets/${idTicket}`, { idTeam: teamID, ticketType })
    }
 }
 

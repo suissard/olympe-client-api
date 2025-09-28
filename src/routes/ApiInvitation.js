@@ -10,7 +10,7 @@ module.exports = class ApiInvitation extends ApiRoute {
     * @param {number} invitationID
     */
    remove(invitationID) {
-      return this.api.DELETE(`invitations/${invitationID}`)
+      return this.api.delete(`invitations/${invitationID}`)
    }
 
    /**
@@ -19,7 +19,7 @@ module.exports = class ApiInvitation extends ApiRoute {
     * @param {0 | 1} accepted - 1: Accepter l'invitation / 0: Refuser l'invitation
     */
    reply(invitationID, accepted) {
-      return this.api.POST(`invitations/${invitationID}`, {
+      return this.api.post(`invitations/${invitationID}`, {
          id: invitationID,
          accepted,
       })

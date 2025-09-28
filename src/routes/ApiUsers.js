@@ -16,7 +16,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @returns {Object} Renvoie un objet d'utilisateur
     */
    get(id, fields) {
-      return this.api.GET(`users/${id}${this.api.getFields(fields)}`).then((data) => user(data))
+      return this.api.get(`users/${id}${this.api.getFields(fields)}`).then((data) => user(data))
    }
 
    /**
@@ -26,7 +26,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @param {String} userID Identifiant de l'utilisateur
     */
    getPrivateActus(userID) {
-      return this.api.GET(`users/${userID}/feed`)
+      return this.api.get(`users/${userID}/feed`)
    }
 
    /**
@@ -36,11 +36,11 @@ module.exports = class ApiUser extends ApiRoute {
     */
    // Non utilisé
    getPublicActus(userID) {
-      return this.api.GET(`users/${userID}/histories`)
+      return this.api.get(`users/${userID}/histories`)
    }
 
    listInvitationsToJoinTeam(userID) {
-      return this.api.GET(`users/${userID}/teams/invitations`)
+      return this.api.get(`users/${userID}/teams/invitations`)
    }
 
    /**
@@ -50,7 +50,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @returns
     */
    putExternalLinks(userId, data) {
-      return this.api.PUT(`users/${userId}/external-links`, data);
+      return this.api.put(`users/${userId}/external-links`, data);
    }
 
    /**
@@ -59,7 +59,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @param {Object} data Data to Update (ex : name=toto)
     */
    update(id, data, file = false) {
-      return this.api.PUT(`users/${id}`, data, file);
+      return this.api.put(`users/${id}`, data, file);
    }
 }
 

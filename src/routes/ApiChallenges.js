@@ -11,7 +11,7 @@ module.exports = class ApiChallenge extends ApiRoute {
    list(active) {
       const urlAdd = active ? `?${this.api.jsonToFormUrlEncoder({ active: 'true' })}` : ''
 
-      return this.api.GET(`challenges${urlAdd}`).then((data) => {
+      return this.api.get(`challenges${urlAdd}`).then((data) => {
          if (data && data.length > 0) return data
 
          return []

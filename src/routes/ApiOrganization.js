@@ -11,7 +11,7 @@ module.exports = class ApiOrganization extends ApiRoute {
     * @param {String} id => Id of Organization
     */
    getConfigs(id) {
-      return this.api.GET(`organizations/${id}/configs`)
+      return this.api.get(`organizations/${id}/configs`)
    }
 }
 

@@ -110,7 +110,7 @@ module.exports = class OlympeApi {
 	 *
 	 * @returns {Promise} Promesse de la requête
 	 */
-	GET(url) {
+	get(url) {
 		return this.makeRequest({ url, method: "GET" });
 	}
 
@@ -122,7 +122,7 @@ module.exports = class OlympeApi {
 	 *
 	 * @returns {Promise} Promesse de la requête
 	 */
-	POST(url, body) {
+	post(url, body) {
 		return this.makeRequest({ url, method: "POST", body });
 	}
 
@@ -134,7 +134,7 @@ module.exports = class OlympeApi {
 	 *
 	 * @returns {Promise} Promesse de la requête
 	 */
-	PUT(url, body, bodyIsFile) {
+	put(url, body, bodyIsFile) {
 		return this.makeRequest({ url, method: "PUT", body, bodyIsFile });
 	}
 
@@ -144,7 +144,7 @@ module.exports = class OlympeApi {
 	 * @param {String} url Route de l'api a sollicité (url complète seras "this.getApiUrl() + url")
 	 * @returns {Promise} Promesse de la requête
 	 */
-	DELETE(url, body) {
+	delete(url, body) {
 		return this.makeRequest({ url, method: "DELETE", body });
 	}
 
@@ -199,21 +199,13 @@ module.exports = class OlympeApi {
 					const data = await response
 						.json()
 						.then((res) => res)
-						.catch(() => {});
+						.catch(console.error);
 
 					if (!response?.ok) throw { response, data };
 					resolve(data, response);
 				})
-				.catch(({ response, data }) => {
-					const title = `${data?.message ?? "Error API"}`;
-					const message = `❌ ${method.toUpperCase()} /${url} -> ${
-						response?.status ?? ""
-					}`;
-
-					console.error(`${message} : ${title}`);
-
-					// eslint-disable-next-line prefer-promise-reject-errors
-					reject({ response, data });
+				.catch((e) => {
+					console.error("❌ OLYMPE API :",e);
 				});
 		});
 	}

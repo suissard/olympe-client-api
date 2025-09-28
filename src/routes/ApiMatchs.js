@@ -20,7 +20,7 @@ module.exports = class ApiMatch extends ApiRoute {
    list(query) {
       const urlAdd = query ? `?${this.api.jsonToFormUrlEncoder(query)}` : ''
 
-      return this.api.GET(`matchs${urlAdd}`)
+      return this.api.get(`matchs${urlAdd}`)
    }
 
    /**
@@ -30,7 +30,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {['thirdpartiesDiscord' | 'battlenetBtag' | 'email']} [fields.userFields]
     */
    get(matchID, fields) {
-      return this.api.GET(`matchs/${matchID}${this.api.getFields(fields)}`)
+      return this.api.get(`matchs/${matchID}${this.api.getFields(fields)}`)
    }
 
    // ==== Schedule ====
@@ -43,7 +43,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {Date} date Timestamp
     */
    proposeMatchSchedule(challengeID, poolID, teamID, matchID, date) {
-      return this.api.POST(
+      return this.api.post(
          `challenges/${challengeID}/pools/${poolID}/teams/${teamID}/matchs/${matchID}/dates`,
          { date }
       )
@@ -59,7 +59,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {Bool} accepted false: date refused / true: date accepted
     */
    replyToMatchSchedule(teamID, matchID, idDate, accepted) {
-      return this.api.POST(`matchs/${matchID}/dates/${idDate}`, { teamID, accepted })
+      return this.api.post(`matchs/${matchID}/dates/${idDate}`, { teamID, accepted })
    }
 
    /**
@@ -70,7 +70,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {String} matchID Match ID
     */
    removeScheduledMatch(challengeID, poolID, teamID, matchID) {
-      return this.api.DELETE(`challenges/${challengeID}/pools/${poolID}/teams/${teamID}/matchs/${matchID}/dates`)
+      return this.api.delete(`challenges/${challengeID}/pools/${poolID}/teams/${teamID}/matchs/${matchID}/dates`)
    }
 
    // ==== Score ====
@@ -83,7 +83,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {String} scores Included teamIDs, and each scores as array. Format: {"scores": [{"team1": 0, "team2": 0}]}
     */
    addAscore(teamID, matchID, scores) {
-      return this.api.POST(`matchs/${matchID}/scores`, { teamID, data: JSON.stringify({ scores }) })
+      return this.api.post(`matchs/${matchID}/scores`, { teamID, data: JSON.stringify({ scores }) })
    }
 
    /**
@@ -94,7 +94,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {String} matchID Match ID
     */
    removeScore(matchID) {
-      return this.api.DELETE(`matchs/${matchID}/scores`)
+      return this.api.delete(`matchs/${matchID}/scores`)
    }
 
    // ==== Cast ====
@@ -104,7 +104,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {String} matchID Match ID
     */
    assignCaster(matchID) {
-      return this.api.POST(`matchs/${matchID}/casts`)
+      return this.api.post(`matchs/${matchID}/casts`)
    }
 
    /**
@@ -113,7 +113,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {String} matchID Match ID
     */
    removeCaster(matchID) {
-      return this.api.DELETE(`matchs/${matchID}/casts`)
+      return this.api.delete(`matchs/${matchID}/casts`)
    }
 
    // ==== Lineup ====
@@ -124,7 +124,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {Number} lineupID
     */
    assignLineup(matchID, lineupID) {
-      return this.api.POST(`matchs/${matchID}/lineups`, { lineupID })
+      return this.api.post(`matchs/${matchID}/lineups`, { lineupID })
    }
 }
 

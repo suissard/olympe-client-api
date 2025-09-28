@@ -13,7 +13,7 @@ module.exports = class ApiPool extends ApiRoute {
    list(challengeID, query) {
       const urlAdd = query ? `?${this.api.jsonToFormUrlEncoder(query)}` : ''
 
-      return this.api.GET(`challenges/${challengeID}/pools${urlAdd}`)
+      return this.api.get(`challenges/${challengeID}/pools${urlAdd}`)
    }
 
    /**
@@ -23,7 +23,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @param {Number} poolID
     */
    getRanking(challengeID, poolID) {
-      return this.api.GET(`challenges/${challengeID}/pools/${poolID}/ranking`)
+      return this.api.get(`challenges/${challengeID}/pools/${poolID}/ranking`)
    }
 }
 
