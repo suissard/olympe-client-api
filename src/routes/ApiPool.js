@@ -1,4 +1,5 @@
 const ApiRoute = require('../ApiRoute.js')
+const Pool = require('../models/Pool');
 
 
 /**
@@ -14,12 +15,12 @@ module.exports = class ApiPool extends ApiRoute {
     * @example OlympeApi.pools.list(1)
     * @param {number} challengeID
     * @param {Object} [query] Filtres
-    * @returns {Promise<Object[]>} Liste des poules
+    * @returns {Promise<Pool[]>} Liste des poules
     */
    list(challengeID, query) {
       const urlAdd = query ? `?${this.api.jsonToFormUrlEncoder(query)}` : ''
 
-      return this.api.get(`challenges/${challengeID}/pools${urlAdd}`)
+      return this.api.get(`challenges/${challengeID}/pools${urlAdd}`).then(list => Array.isArray(list) ? list.map(data => new Pool(data)) : list)
    }
 
    /**

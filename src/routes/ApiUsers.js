@@ -1,6 +1,5 @@
 const ApiRoute = require('../ApiRoute.js');
-
-const user = (data) => ({ ...data, username: data.username || 'No username' });
+const User = require('../models/User');
 
 /**
  * Différentes méthodes associées aux routes de l'api
@@ -19,10 +18,10 @@ module.exports = class ApiUser extends ApiRoute {
     * @param {Object} [fields] Fields permettant de récupérer des clés précises de l'objet user
     * @param {Array<('thirdpartiesDiscord' | 'battlenetBtag' | 'email')>} [fields.fields]
     *
-    * @returns {Promise<Object>} Renvoie un objet d'utilisateur
+    * @returns {Promise<User>} Renvoie un objet d'utilisateur
     */
    get(id, fields) {
-      return this.api.get(`users/${id}${this.api.getFields(fields)}`).then((data) => user(data))
+      return this.api.get(`users/${id}${this.api.getFields(fields)}`).then((data) => new User(data))
    }
 
    /**
@@ -32,7 +31,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @instance
     * @example OlympeApi.users.search('user_id')
     * @param {String} id
-    * @returns {Promise<Object>}
+    * @returns {Promise<User>}
     */
    search(id) {
       return this.api.post(
@@ -40,7 +39,7 @@ module.exports = class ApiUser extends ApiRoute {
          {
             search: id,
          }
-      );
+      ).then(data => new User(data));
    }
 
    /**
@@ -96,10 +95,10 @@ module.exports = class ApiUser extends ApiRoute {
     *
     * @param {String} userId Identifiant de l'utilisateur
     * @param {Object} data Données des liens externes
-    * @returns {Promise<Object>} Utilisateur mis à jour
+    * @returns {Promise<User>} Utilisateur mis à jour
     */
    putExternalLinks(userId, data) {
-      return this.api.put(`users/${userId}/external-links`, data);
+      return this.api.put(`users/${userId}/external-links`, data).then(data => new User(data));
    }
 
    /**
@@ -112,10 +111,10 @@ module.exports = class ApiUser extends ApiRoute {
     * @param {String} id UserID
     * @param {Object} data Data to Update (ex : name=toto)
     * @param {boolean} [file=false] Si le body est un fichier
-    * @returns {Promise<Object>} Utilisateur mis à jour
+    * @returns {Promise<User>} Utilisateur mis à jour
     */
    update(id, data, file = false) {
-      return this.api.put(`users/${id}`, data, file);
+      return this.api.put(`users/${id}`, data, file).then(data => new User(data));
    }
 }
 

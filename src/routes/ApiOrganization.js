@@ -1,5 +1,5 @@
 const ApiRoute = require('../ApiRoute.js')
-
+const Organization = require('../models/Organization');
 
 /**
  * Differentes méthodes associés aux routes de l'Api
@@ -14,11 +14,10 @@ module.exports = class ApiOrganization extends ApiRoute {
     * @example OlympeApi.organizations.getConfigs('org_id')
     *
     * @param {String} id => Id of Organization
-    * @returns {Promise<Object>} Organization configurations
+    * @returns {Promise<Organization>} Organization configurations
     */
    getConfigs(id) {
-      return this.api.get(`organizations/${id}/configs`)
+      return this.api.get(`organizations/${id}/configs`).then(data => new Organization(data))
    }
 }
-
 

@@ -1,17 +1,5 @@
 const ApiRoute = require('../ApiRoute.js')
-
-
-const team = (data) => ({
-   ...data,
-   members: data?.members?.map((member) => ({
-      ...member,
-      username: member.username || 'No username',
-      user: {
-         ...member.user,
-         username: member.user.username || 'No username',
-      
-   }   })),
-})
+const Team = require('../models/Team');
 
 /**
  * Différentes méthodes associées aux routes de l'api
@@ -29,10 +17,10 @@ module.exports = class ApiTeam extends ApiRoute {
     * @param {String} teamID Id of team
     * @param {Object} [fields] Fields permettant de récupérer des clés précises de l'objet user
     * @param {Array<('thirdpartiesDiscord' | 'battlenetBtag' | 'email')>} [fields.userFields]
-    * @returns {Promise<Object>} Équipe
+    * @returns {Promise<Team>} Équipe
     */
    get(teamID, fields) {
-      return this.api.get(`teams/${teamID}${this.api.getFields(fields)}`).then((data) => team(data))
+      return this.api.get(`teams/${teamID}${this.api.getFields(fields)}`).then((data) => new Team(data))
    }
 
    /**
@@ -41,10 +29,10 @@ module.exports = class ApiTeam extends ApiRoute {
     * @memberof ApiTeam
     * @instance
     * @example OlympeApi.teams.list()
-    * @returns {Promise<Object[]>} Liste des équipes
+    * @returns {Promise<Team[]>} Liste des équipes
     */
    list() {
-      return this.api.get('teams').then((list) => list.map((data) => team(data)))
+      return this.api.get('teams').then((list) => list.map((data) => new Team(data)))
    }
 
    // ==== Manage team ====
@@ -58,10 +46,10 @@ module.exports = class ApiTeam extends ApiRoute {
     * @param {String} name
     * @param {String} nationality
     *
-    * @returns {Promise<Object>} Team created
+    * @returns {Promise<Team>} Team created
     */
    create(name, nationality) {
-      return this.api.post('teams', { name, nationality }).then((data) => team(data))
+      return this.api.post('teams', { name, nationality }).then((data) => new Team(data))
    }
 
    /**

@@ -48,7 +48,7 @@ describe("OlympeApi Unit Tests (Mocked)", () => {
                 `https://${testDomain}/api/challenges`,
                 expect.objectContaining({ method: "GET" })
             );
-            expect(result).toEqual(mockData);
+            expect(result).toMatchObject(mockData);
         });
 
         test("challenges.list with active flag", async () => {
@@ -70,7 +70,7 @@ describe("OlympeApi Unit Tests (Mocked)", () => {
 
     describe("Matchs (Events)", () => {
         test("getEvents (matchs.list) should return list of matches", async () => {
-            const mockData = [{ id: "match-123", team1: "A", team2: "B" }];
+            const mockData = [{ id: "match-123", team1: { id: "A", name: "Team A" }, team2: { id: "B", name: "Team B" } }];
             mockJson.mockResolvedValueOnce(mockData);
 
             const result = await api.matchs.list();
@@ -79,7 +79,7 @@ describe("OlympeApi Unit Tests (Mocked)", () => {
                 `https://${testDomain}/api/matchs`,
                 expect.objectContaining({ method: "GET" })
             );
-            expect(result).toEqual(mockData);
+            expect(result).toMatchObject(mockData);
         });
 
         test("getEventById (matchs.get) should return match details", async () => {
@@ -93,7 +93,7 @@ describe("OlympeApi Unit Tests (Mocked)", () => {
                 `https://${testDomain}/api/matchs/${matchId}`,
                 expect.objectContaining({ method: "GET" })
             );
-            expect(result).toEqual(mockData);
+            expect(result).toMatchObject(mockData);
         });
     });
 
@@ -110,7 +110,7 @@ describe("OlympeApi Unit Tests (Mocked)", () => {
                 expect.objectContaining({ method: "GET" })
             );
             // ApiUsers wraps result
-            expect(result).toEqual(mockData);
+            expect(result).toMatchObject(mockData);
         });
 
         test("users.getPrivateActus should call correct endpoint", async () => {

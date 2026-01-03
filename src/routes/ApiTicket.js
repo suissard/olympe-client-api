@@ -1,4 +1,5 @@
 const ApiRoute = require('../ApiRoute.js')
+const Ticket = require('../models/Ticket');
 
 
 /**
@@ -15,11 +16,11 @@ module.exports = class ApiTicket extends ApiRoute {
     *
     * @param {Number} challengeId Challenge ID
     * @param {Boolean} [active]      [Query] Return only challenges with tickets not expired (this variable must be added in url as ?foo=bar)
-    * @returns {Promise<Object[]>} Liste des tickets
+    * @returns {Promise<Ticket[]>} Liste des tickets
     */
    list(challengeId, active) {
       const urlAdd = active ? `?${this.api.jsonToFormUrlEncoder({ active: 'true' })}` : ''
-      return this.api.get(`challenges/${challengeId}/tickets${urlAdd}`)
+      return this.api.get(`challenges/${challengeId}/tickets${urlAdd}`).then(list => list.map(data => new Ticket(data)))
    }
 
    /**

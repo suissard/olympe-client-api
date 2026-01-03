@@ -1,4 +1,5 @@
 const ApiRoute = require('../ApiRoute.js')
+const Match = require('../models/Match');
 
 
 /**
@@ -24,12 +25,12 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {String} [query.scheduled]  Filter by scheduled date. Allowed values: ['future', 'past', 'live']
     * @param {String} [query.active]  Filter by active steps. Allowed values: ['true']
     * @param {Number} [query.limit]   Limit the number of results
-    * @returns {Promise<Object[]>} Liste des matchs
+    * @returns {Promise<Match[]>} Liste des matchs
     */
    list(query) {
       const urlAdd = query ? `?${this.api.jsonToFormUrlEncoder(query)}` : ''
 
-      return this.api.get(`matchs${urlAdd}`)
+      return this.api.get(`matchs${urlAdd}`).then(list => list.map(data => new Match(data)))
    }
 
    /**
@@ -42,10 +43,10 @@ module.exports = class ApiMatch extends ApiRoute {
     * @param {String} matchID
     * @param {Object} [fields] Fields permettant de récupérer des clés précises de l'objet user
     * @param {Array<('thirdpartiesDiscord' | 'battlenetBtag' | 'email')>} [fields.userFields]
-    * @returns {Promise<Object>} Match
+    * @returns {Promise<Match>} Match
     */
    get(matchID, fields) {
-      return this.api.get(`matchs/${matchID}${this.api.getFields(fields)}`)
+      return this.api.get(`matchs/${matchID}${this.api.getFields(fields)}`).then(data => new Match(data))
    }
 
    // ==== Schedule ====

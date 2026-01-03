@@ -1,4 +1,5 @@
 const ApiRoute = require('../ApiRoute.js')
+const Step = require('../models/Step');
 
 
 /**
@@ -14,10 +15,10 @@ module.exports = class ApiStep extends ApiRoute {
     * @example OlympeApi.steps.list(1)
     *
     * @param {Number} challengeId
-    * @returns {Promise<Object[]>} Liste des étapes
+    * @returns {Promise<Step[]>} Liste des étapes
     */
    list(challengeId) {
-      return this.api.get(`challenges/${challengeId}/steps`)
+      return this.api.get(`challenges/${challengeId}/steps`).then(list => list.map(data => new Step(data)))
    }
 
    /**

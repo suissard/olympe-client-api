@@ -1,4 +1,5 @@
 const ApiRoute = require('../ApiRoute.js')
+const Challenge = require('../models/Challenge');
 
 
 /**
@@ -13,13 +14,13 @@ module.exports = class ApiChallenge extends ApiRoute {
     * @instance
     * @example OlympeApi.challenges.list(true)
     * @param {boolean} [active] Récupérer uniquement les challenges actifs
-    * @returns {Promise<Object[]>} Liste des challenges
+    * @returns {Promise<Challenge[]>} Liste des challenges
     */
    list(active) {
       const urlAdd = active ? `?${this.api.jsonToFormUrlEncoder({ active: 'true' })}` : ''
 
       return this.api.get(`challenges${urlAdd}`).then((data) => {
-         if (data && data.length > 0) return data
+         if (data && data.length > 0) return data.map(d => new Challenge(d))
 
          return []
       })
