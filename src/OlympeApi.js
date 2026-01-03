@@ -199,14 +199,12 @@ module.exports = class OlympeApi {
 					const data = await response
 						.json()
 						.then((res) => res)
-						.catch(console.error);
+						.catch(reject);
 
 					if (!response?.ok) throw { response, data };
 					resolve(data, response);
 				})
-				.catch((e) => {
-					console.error("❌ OLYMPE API :",e);
-				});
+				.catch(reject);
 		});
 	}
 };
