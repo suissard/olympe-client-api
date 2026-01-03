@@ -22,11 +22,11 @@ describe("OlympeApi Unit Tests (Mocked)", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         mockJson.mockReset();
-         mockFetch.mockResolvedValue({
+        mockFetch.mockResolvedValue({
             ok: true,
             json: mockJson,
         });
-        
+
         // Inject the mockFetch as the 5th argument
         api = new OlympeApi(testToken, testDomain, undefined, undefined, mockFetch);
     });
@@ -52,19 +52,19 @@ describe("OlympeApi Unit Tests (Mocked)", () => {
         });
 
         test("challenges.list with active flag", async () => {
-             const mockData = [{ id: 1, name: "Active Mission" }];
-             mockJson.mockResolvedValueOnce(mockData);
+            const mockData = [{ id: 1, name: "Active Mission" }];
+            mockJson.mockResolvedValueOnce(mockData);
 
-             await api.challenges.list(true);
-             expect(mockFetch).toHaveBeenCalledWith(
+            await api.challenges.list(true);
+            expect(mockFetch).toHaveBeenCalledWith(
                 expect.stringContaining("active=true"),
                 expect.anything()
             );
         });
-         test("challenges.list returns empty array on null response", async () => {
-             mockJson.mockResolvedValueOnce(null);
-             const result = await api.challenges.list();
-             expect(result).toEqual([]);
+        test("challenges.list returns empty array on null response", async () => {
+            mockJson.mockResolvedValueOnce(null);
+            const result = await api.challenges.list();
+            expect(result).toEqual([]);
         });
     });
 
@@ -114,22 +114,40 @@ describe("OlympeApi Unit Tests (Mocked)", () => {
         });
 
         test("users.getPrivateActus should call correct endpoint", async () => {
-             const userId = "user-123";
-             mockJson.mockResolvedValueOnce([]);
+            const userId = "user-123";
+            mockJson.mockResolvedValueOnce([]);
 
-             await api.users.getPrivateActus(userId);
+            await api.users.getPrivateActus(userId);
 
-             expect(mockFetch).toHaveBeenCalledWith(
+            expect(mockFetch).toHaveBeenCalledWith(
                 `https://${testDomain}/api/users/${userId}/feed`,
-                 expect.anything()
-             );
+                expect.anything()
+            );
         });
+
+        test("search (admin) should call search-deprecated-bot-suissard endpoint", async () => {
+            const userId = "user-123";
+            const mockData = { id: userId, username: "TestUser" };
+            mockJson.mockResolvedValueOnce(mockData);
+
+            const result = await api.users.search(userId);
+
+            expect(mockFetch).toHaveBeenCalledWith(
+                `https://${testDomain}/api/users/search-deprecated-bot-suissard?fields=thirdpartiesDiscord%2CcastUrl`,
+                expect.objectContaining({
+                    method: "POST",
+                    body: expect.stringContaining("search=user-123") // check request body
+                })
+            );
+            expect(result).toMatchObject(mockData);
+        });
+
     });
-    
+
     describe("Error Handling", () => {
         test("should handle API errors", async () => {
             const errorResponse = { error: "Unauthorized" };
-             mockFetch.mockResolvedValue({
+            mockFetch.mockResolvedValue({
                 ok: false,
                 json: () => Promise.resolve(errorResponse),
             });

@@ -98,6 +98,42 @@ module.exports = class ApiMarketPlace extends ApiRoute {
    sendInvit(payload) {
       return this.api.post('marketplace/users/invitations', payload)
    }
+   /**
+    * Create a quota
+    * @method createQuota
+    * @memberof ApiMarketPlace
+    * @instance
+    * @param {Object} data
+    * @returns {Promise<Object>}
+    */
+   createQuota(data) {
+      return this.api.post('marketplace/quotas', data)
+   }
+
+   /**
+    * Update a quota
+    * @method updateQuota
+    * @memberof ApiMarketPlace
+    * @instance
+    * @param {string} id
+    * @param {Object} data
+    * @returns {Promise<Object>}
+    */
+   updateQuota(id, data) {
+      return this.api.put(`marketplace/quotas/${id}`, data)
+   }
+
+   /**
+    * Delete a quota
+    * @method deleteQuota
+    * @memberof ApiMarketPlace
+    * @instance
+    * @param {string} id
+    * @returns {Promise<Object>}
+    */
+   deleteQuota(id) {
+      return this.api.delete(`marketplace/quotas/${id}`)
+   }
 }
 
 

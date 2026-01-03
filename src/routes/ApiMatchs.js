@@ -179,6 +179,43 @@ module.exports = class ApiMatch extends ApiRoute {
    assignLineup(matchID, lineupID) {
       return this.api.post(`matchs/${matchID}/lineups`, { lineupID })
    }
+
+   /**
+    * Force la date d'un match (Admin/Staff)
+    * @method forceDate
+    * @memberof ApiMatch
+    * @instance
+    * @param {string} matchID
+    * @param {Date} date
+    * @returns {Promise<Object>}
+    */
+   forceDate(matchID, date) {
+      return this.api.post(`matchs/${matchID}/force-date`, { date })
+   }
+
+   /**
+    * Récupère les casters d'un match
+    * @method getCasters
+    * @memberof ApiMatch
+    * @instance
+    * @param {string} matchID
+    * @returns {Promise<Object>}
+    */
+   getCasters(matchID) {
+      return this.api.get(`matchs/${matchID}/casts`)
+   }
+
+   /**
+    * Supprime les dates d'un match
+    * @method removeDate
+    * @memberof ApiMatch
+    * @instance
+    * @param {string} matchID
+    * @returns {Promise<Object>}
+    */
+   removeDate(matchID) {
+      return this.api.delete(`matchs/${matchID}/dates`)
+   }
 }
 
 

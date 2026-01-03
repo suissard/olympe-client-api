@@ -1,7 +1,10 @@
 const fetch = require("cross-fetch");
 const { Headers } = fetch;
 
+const ApiACL = require("./routes/ApiACL");
+const ApiBrackets = require("./routes/ApiBrackets");
 const ApiChallenge = require("./routes/ApiChallenges");
+const ApiChallengesGroups = require("./routes/ApiChallengesGroups");
 const ApiDiscord = require("./routes/ApiDiscord");
 const ApiInvitation = require("./routes/ApiInvitation");
 const ApiMarketPlace = require("./routes/ApiMarketPlace");
@@ -27,7 +30,7 @@ module.exports = class OlympeApi {
 	 * @param {string} [protocole="https"] Protocole (http ou https)
 	 * @param {Function} [fetchImpl=fetch] Implémentation de fetch à utiliser (pour les tests ou polyfills)
 	 */
-	constructor(token, domain = "playallforone.com", xDomain="www.playallforone.com",  protocole = "https", fetchImpl = fetch) {
+	constructor(token, domain = "playallforone.com", xDomain = "www.playallforone.com", protocole = "https", fetchImpl = fetch) {
 		this.token = token;
 		this.domain = domain;
 		this.xDomain = xDomain;
@@ -35,7 +38,10 @@ module.exports = class OlympeApi {
 		this.fetch = fetchImpl;
 
 		//Routes
+		this.acl = new ApiACL(this);
+		this.brackets = new ApiBrackets(this);
 		this.challenges = new ApiChallenge(this);
+		this.challengesGroups = new ApiChallengesGroups(this);
 		this.discord = new ApiDiscord(this);
 		this.invitations = new ApiInvitation(this);
 		this.marketplace = new ApiMarketPlace(this);

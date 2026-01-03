@@ -39,6 +39,83 @@ module.exports = class ApiTicket extends ApiRoute {
    buy(challengeId, idTicket, teamID, ticketType) {
       return this.api.post(`challenges/${challengeId}/tickets/${idTicket}`, { idTeam: teamID, ticketType })
    }
+
+   /**
+    * Get a ticket
+    * @method get
+    * @memberof ApiTicket
+    * @instance
+    * @param {string} challengeID
+    * @param {string} ticketID
+    * @returns {Promise<Ticket>}
+    */
+   get(challengeID, ticketID) {
+      return this.api.get(`challenges/${challengeID}/tickets/${ticketID}`).then(data => new Ticket(data))
+   }
+
+   /**
+    * Create a ticket
+    * @method create
+    * @memberof ApiTicket
+    * @instance
+    * @param {string} challengeID
+    * @param {Object} data
+    * @returns {Promise<Ticket>}
+    */
+   create(challengeID, data) {
+      return this.api.post(`challenges/${challengeID}/tickets`, data).then(data => new Ticket(data))
+   }
+
+   /**
+    * Update a ticket
+    * @method update
+    * @memberof ApiTicket
+    * @instance
+    * @param {string} challengeID
+    * @param {string} ticketID
+    * @param {Object} data
+    * @returns {Promise<Ticket>}
+    */
+   update(challengeID, ticketID, data) {
+      return this.api.put(`challenges/${challengeID}/tickets/${ticketID}`, data).then(data => new Ticket(data))
+   }
+
+   /**
+    * Delete a ticket
+    * @method delete
+    * @memberof ApiTicket
+    * @instance
+    * @param {string} challengeID
+    * @param {string} ticketID
+    * @returns {Promise<Object>}
+    */
+   delete(challengeID, ticketID) {
+      return this.api.delete(`challenges/${challengeID}/tickets/${ticketID}`)
+   }
+
+   /**
+    * Delete a purchased ticket
+    * @method deleteTicketPurchased
+    * @memberof ApiTicket
+    * @instance
+    * @param {string} id
+    * @returns {Promise<Object>}
+    */
+   deleteTicketPurchased(id) {
+      return this.api.delete(`ticketspurchased/${id}`)
+   }
+
+   /**
+    * Replace a purchased ticket
+    * @method replaceTicketPurchased
+    * @memberof ApiTicket
+    * @instance
+    * @param {string} sourceTicketID
+    * @returns {Promise<Object>}
+    */
+   replaceTicketPurchased(sourceTicketID) {
+      return this.api.post(`ticketspurchased/${sourceTicketID}/replace`)
+   }
 }
 
 

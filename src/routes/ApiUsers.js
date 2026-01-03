@@ -29,6 +29,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @method search
     * @memberof ApiUser
     * @instance
+    * @deprecated Cette fonction va rapidement devenir obsolete, ne pas trop se baser dessus.
     * @example OlympeApi.users.search('user_id')
     * @param {String} id
     * @returns {Promise<User>}
@@ -115,6 +116,64 @@ module.exports = class ApiUser extends ApiRoute {
     */
    update(id, data, file = false) {
       return this.api.put(`users/${id}`, data, file).then(data => new User(data));
+   }
+   /**
+    * Supprimer l'image de profil
+    * @method deleteProfileAsset
+    * @memberof ApiUser
+    * @instance
+    * @param {string} id
+    * @returns {Promise<any>}
+    */
+   deleteProfileAsset(id) {
+      return this.api.delete(`users/${id}/assets/profile`)
+   }
+
+   /**
+    * Suivre un utilisateur
+    * @method follow
+    * @memberof ApiUser
+    * @instance
+    * @param {string} id
+    * @returns {Promise<any>}
+    */
+   follow(id) {
+      return this.api.post(`users/${id}/follow`)
+   }
+
+   /**
+    * Ne plus suivre un utilisateur
+    * @method unfollow
+    * @memberof ApiUser
+    * @instance
+    * @param {string} id
+    * @returns {Promise<any>}
+    */
+   unfollow(id) {
+      return this.api.delete(`users/${id}/follow`)
+   }
+
+   /**
+    * Obtenir les statistiques d'un utilisateur
+    * @method getStats
+    * @memberof ApiUser
+    * @instance
+    * @param {string} id
+    * @returns {Promise<any>}
+    */
+   getStats(id) {
+      return this.api.get(`users/${id}/stats`)
+   }
+
+   /**
+    * Obtenir le fil d'actualité global
+    * @method getFeed
+    * @memberof ApiUser
+    * @instance
+    * @returns {Promise<any>}
+    */
+   getFeed() {
+      return this.api.get(`feed`)
    }
 }
 

@@ -280,6 +280,105 @@ module.exports = class ApiTeam extends ApiRoute {
    follow(teamID) {
       return this.api.post(`teams/${teamID}/follow`)
    }
+   /**
+    * Unfollow a team
+    * @method unfollow
+    * @memberof ApiTeam
+    * @instance
+    * @param {String} teamID
+    * @returns {Promise<Object>}
+    */
+   unfollow(teamID) {
+      return this.api.delete(`teams/${teamID}/follow`)
+   }
+
+   /**
+    * Add a member to a team (Admin)
+    * @method addMember
+    * @memberof ApiTeam
+    * @instance
+    * @param {String} teamID
+    * @param {Object} data
+    * @returns {Promise<Object>}
+    */
+   addMember(teamID, data) {
+      return this.api.post(`teams/${teamID}/members`, data)
+   }
+
+   /**
+    * Assign a ticket to a team
+    * @method assignTicket
+    * @memberof ApiTeam
+    * @instance
+    * @param {String} teamID
+    * @param {String} ticketsPurchasedID
+    * @returns {Promise<Object>}
+    */
+   assignTicket(teamID, ticketsPurchasedID) {
+      return this.api.post(`teams/${teamID}/ticketspurchased/${ticketsPurchasedID}`)
+   }
+
+   /**
+    * List tickets assigned to a team
+    * @method listTickets
+    * @memberof ApiTeam
+    * @instance
+    * @param {String} teamID
+    * @returns {Promise<Object[]>}
+    */
+   listTickets(teamID) {
+      return this.api.get(`teams/${teamID}/ticketspurchased`)
+   }
+
+   /**
+    * Unassign a ticket from a team
+    * @method unassignTicket
+    * @memberof ApiTeam
+    * @instance
+    * @param {String} teamID
+    * @param {String} ticketsPurchasedID
+    * @returns {Promise<Object>}
+    */
+   unassignTicket(teamID, ticketsPurchasedID) {
+      return this.api.delete(`teams/${teamID}/ticketspurchased/${ticketsPurchasedID}`)
+   }
+
+   /**
+    * Delete a lineup
+    * @method deleteLineup
+    * @memberof ApiTeam
+    * @instance
+    * @param {String} lineupID
+    * @returns {Promise<Object>}
+    */
+   deleteLineup(lineupID) {
+      return this.api.delete(`lineups/${lineupID}`)
+   }
+
+   /**
+    * Get a lineup
+    * @method getLineup
+    * @memberof ApiTeam
+    * @instance
+    * @param {String} lineupID
+    * @returns {Promise<Object>}
+    */
+   getLineup(lineupID) {
+      return this.api.get(`lineups/${lineupID}`)
+   }
+
+   /**
+    * Update a lineup
+    * @method updateLineup
+    * @memberof ApiTeam
+    * @instance
+    * @param {String} lineupID
+    * @param {Object} data
+    * @returns {Promise<Object>}
+    */
+   updateLineup(lineupID, data) {
+      return this.api.put(`lineups/${lineupID}`, data)
+   }
 }
 
 
