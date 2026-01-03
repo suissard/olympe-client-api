@@ -7,6 +7,8 @@ const ApiRoute = require('../ApiRoute.js')
 module.exports = class ApiChallenge extends ApiRoute {
    /**
     * Liste des challenges
+    * @param {boolean} [active] Récupérer uniquement les challenges actifs
+    * @returns {Promise<Object[]>} Liste des challenges
     */
    list(active) {
       const urlAdd = active ? `?${this.api.jsonToFormUrlEncoder({ active: 'true' })}` : ''

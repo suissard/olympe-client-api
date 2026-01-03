@@ -18,11 +18,20 @@ const ApiUsers = require("./routes/ApiUsers");
  * Gestion des requêtes à l'API
  */
 module.exports = class OlympeApi {
-	constructor(token, domain = "playallforone.com", xDomain="www.playallforone.com",  protocole = "https") {
+	/**
+	 * Constructeur de l'API Olympe
+	 * @param {string} token Token d'authentification
+	 * @param {string} [domain="playallforone.com"] Domaine de l'API
+	 * @param {string} [xDomain="www.playallforone.com"] Header x-domain
+	 * @param {string} [protocole="https"] Protocole (http ou https)
+	 * @param {Function} [fetchImpl=fetch] Implémentation de fetch à utiliser (pour les tests ou polyfills)
+	 */
+	constructor(token, domain = "playallforone.com", xDomain="www.playallforone.com",  protocole = "https", fetchImpl = fetch) {
 		this.token = token;
 		this.domain = domain;
 		this.xDomain = xDomain;
 		this.protocole = protocole;
+		this.fetch = fetchImpl;
 
 		//Routes
 		this.challenges = new ApiChallenge(this);
@@ -50,6 +59,7 @@ module.exports = class OlympeApi {
 	/**
 	 * Renvoie le header
 	 *
+	 * @param {boolean} [bodyIsFile=false] Si le body est un fichier
 	 * @returns {Headers} Header avec authorization bearer
 	 */
 	getHeader(bodyIsFile = false) {
@@ -61,11 +71,19 @@ module.exports = class OlympeApi {
 
 	/**
 	 * Nécessaire pour faire tourner les composants de la version 1 du site
+	 * 
+	 * @returns {string} L'url complète du domaine (protocole + domaine)
 	 */
 	getDomain() {
 		return `${this.protocole}://${this.domain}`;
 	}
 
+	/**
+	 * Transforme un objet de champs en paramètres d'URL
+	 * 
+	 * @param {Object.<string, string[]>} fields Objet contenant les champs à récupérer
+	 * @returns {string} Paramètres d'URL formatés (ex: "?field1=val1,val2&field2=val3")
+	 */
 	getFields(fields) {
 		if (!fields) return "";
 
@@ -82,7 +100,8 @@ module.exports = class OlympeApi {
 	/**
 	 * Transpose un objet en un format compatible avec le content-type :x-www-formUrlEncoder
 	 *
-	 * @param {Object} obj
+	 * @param {Object} obj Objet à encoder
+	 * @returns {string} Chaîne encodée pour l'URL
 	 */
 	jsonToFormUrlEncoder(obj) {
 		const str = [];
@@ -108,7 +127,7 @@ module.exports = class OlympeApi {
 	 *
 	 * @param {String} url Route de l'api a sollicité (url complète seras "this.getApiUrl() + url")
 	 *
-	 * @returns {Promise} Promesse de la requête
+	 * @returns {Promise<any>} Promesse de la requête contenant la réponse JSON
 	 */
 	get(url) {
 		return this.makeRequest({ url, method: "GET" });
@@ -120,7 +139,7 @@ module.exports = class OlympeApi {
 	 * @param {String} url Route de l'api a sollicité (url complète seras "this.getApiUrl() + url")
 	 * @param {Object} body Corps de la requête
 	 *
-	 * @returns {Promise} Promesse de la requête
+	 * @returns {Promise<any>} Promesse de la requête contenant la réponse JSON
 	 */
 	post(url, body) {
 		return this.makeRequest({ url, method: "POST", body });
@@ -131,8 +150,9 @@ module.exports = class OlympeApi {
 	 *
 	 * @param {String} url Route de l'api a sollicité (url complète seras "this.getApiUrl() + url")
 	 * @param {Object} body Corps de la requête
+	 * @param {boolean} [bodyIsFile=false] Indique si le corps est un fichier
 	 *
-	 * @returns {Promise} Promesse de la requête
+	 * @returns {Promise<any>} Promesse de la requête contenant la réponse JSON
 	 */
 	put(url, body, bodyIsFile) {
 		return this.makeRequest({ url, method: "PUT", body, bodyIsFile });
@@ -142,7 +162,8 @@ module.exports = class OlympeApi {
 	 * Effectue une requête DELETE
 	 *
 	 * @param {String} url Route de l'api a sollicité (url complète seras "this.getApiUrl() + url")
-	 * @returns {Promise} Promesse de la requête
+	 * @param {Object} [body] Corps de la requête (optionnel)
+	 * @returns {Promise<any>} Promesse de la requête contenant la réponse JSON
 	 */
 	delete(url, body) {
 		return this.makeRequest({ url, method: "DELETE", body });
@@ -151,12 +172,14 @@ module.exports = class OlympeApi {
 	/**
 	 * Creer un object de requete
 	 *
-	 * @param {Object} object
-	 * @param {String} object.url Route de l'api a sollicité (url complète seras "this.getApiUrl() + url")
-	 * @param {GET | POST | PUT | DELETE} object.method Méthode HTTPS
-	 * @param {Object} object.body Corps de la requête
+	 * @param {Object} object Paramètres de la requête
+	 * @param {String} [object.url] Route de l'api a sollicité (url complète seras "this.getApiUrl() + url")
+	 * @param {'GET' | 'POST' | 'PUT' | 'DELETE'} object.method Méthode HTTPS
+	 * @param {Object} [object.body] Corps de la requête
+	 * @param {Headers} [object.headers] Headers personnalisés
+	 * @param {boolean} [object.bodyIsFile] Si le body est un fichier
 	 *
-	 * @returns {Promise} Promesse de la requête
+	 * @returns {Object} Objet de configuration pour fetch
 	 */
 	getRequestObject({
 		method,
@@ -177,12 +200,14 @@ module.exports = class OlympeApi {
 	/**
 	 * Effectue une requête au format Promesse
 	 *
-	 * @param {Object} object
+	 * @param {Object} object Paramètres de la requête
 	 * @param {String} object.url Route de l'api a sollicité (url complète seras "this.getApiUrl() + url")
-	 * @param {GET | POST | PUT | DELETE} object.method Méthode HTTPS
-	 * @param {Object} object.body Corps de la requête
+	 * @param {'GET' | 'POST' | 'PUT' | 'DELETE'} object.method Méthode HTTPS
+	 * @param {Object} [object.body] Corps de la requête
+	 * @param {Headers} [object.headers] Headers personnalisés
+	 * @param {boolean} [object.bodyIsFile] Si le body est un fichier
 	 *
-	 * @returns {Promise} Promesse de la requête
+	 * @returns {Promise<any>} Promesse de la requête contenant la réponse JSON
 	 */
 	makeRequest({
 		url,
@@ -194,7 +219,7 @@ module.exports = class OlympeApi {
 		const request = this.getRequestObject({ method, body, headers, bodyIsFile });
 
 		return new Promise((resolve, reject) => {
-			fetch(`${this.getApiUrl()}${url}`, request)
+			this.fetch(`${this.getApiUrl()}${url}`, request)
 				.then(async (response) => {
 					const data = await response
 						.json()
