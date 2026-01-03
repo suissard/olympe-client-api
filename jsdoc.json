@@ -1,0 +1,26 @@
+{
+  "source": {
+    "include": ["src"],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "opts": {
+    "destination": "./docs",
+    "recurse": true,
+    "readme": "./DOCS_README.md",
+    "template": "node_modules/clean-jsdoc-theme",
+    "theme_opts": {
+      "default_theme": "dark",
+      "search": true,
+      "title": "Olympe Client API",
+      "footer": "Olympe Client API Documentation",
+      "meta": [
+        {
+          "name": "description",
+          "content": "Documentation for the Olympe Client API"
+        }
+      ]
+    }
+  },
+  "plugins": ["plugins/markdown"]
+}

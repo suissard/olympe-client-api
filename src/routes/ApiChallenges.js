@@ -3,10 +3,15 @@ const ApiRoute = require('../ApiRoute.js')
 
 /**
  * Différentes méthodes associées aux routes de l'api
+ * @class ApiChallenge
  */
 module.exports = class ApiChallenge extends ApiRoute {
    /**
     * Liste des challenges
+    * @method list
+    * @memberof ApiChallenge
+    * @instance
+    * @example OlympeApi.challenges.list(true)
     * @param {boolean} [active] Récupérer uniquement les challenges actifs
     * @returns {Promise<Object[]>} Liste des challenges
     */

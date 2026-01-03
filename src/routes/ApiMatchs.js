@@ -3,12 +3,18 @@ const ApiRoute = require('../ApiRoute.js')
 
 /**
  * Différentes méthodes associées aux routes de l'api
+ * @class ApiMatch
+ * @lends ApiMatch.prototype
  */
 module.exports = class ApiMatch extends ApiRoute {
    // ==== Get match(s) ====
    // ==== Get match(s) ====
    /**
     * Récupère la liste des matchs
+    * @method list
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.list({ active: true })
     *
     * @param {Object} query Filtres
     * @param {String} [query.poolID]  Filter by pool ID
@@ -28,10 +34,14 @@ module.exports = class ApiMatch extends ApiRoute {
 
    /**
     * Récupère un match par son ID
+    * @method get
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.get('match_id')
     *
     * @param {String} matchID
     * @param {Object} [fields] Fields permettant de récupérer des clés précises de l'objet user
-    * @param {['thirdpartiesDiscord' | 'battlenetBtag' | 'email']} [fields.userFields]
+    * @param {Array<('thirdpartiesDiscord' | 'battlenetBtag' | 'email')>} [fields.userFields]
     * @returns {Promise<Object>} Match
     */
    get(matchID, fields) {
@@ -41,6 +51,10 @@ module.exports = class ApiMatch extends ApiRoute {
    // ==== Schedule ====
    /**
     * Propose une date pour un match
+    * @method proposeMatchSchedule
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.proposeMatchSchedule(1, 1, 'team_id', 'match_id', new Date())
     *
     * @param {Number} challengeID Challenge ID
     * @param {Number} poolID Pool ID
@@ -58,6 +72,10 @@ module.exports = class ApiMatch extends ApiRoute {
 
    /**
     * Répond à une proposition de date de match
+    * @method replyToMatchSchedule
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.replyToMatchSchedule('team_id', 'match_id', 123, true)
     *
     * @param {String} teamID Team ID
     * @param {String} matchID Match ID
@@ -71,6 +89,10 @@ module.exports = class ApiMatch extends ApiRoute {
 
    /**
     * Supprime une date de match acceptée (annule le schedule)
+    * @method removeScheduledMatch
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.removeScheduledMatch(1, 1, 'team_id', 'match_id')
     *
     * @param {Number} challengeID Challenge ID
     * @param {Number} poolID Pool ID
@@ -85,6 +107,10 @@ module.exports = class ApiMatch extends ApiRoute {
    // ==== Score ====
    /**
     * Ajoute un score à un match
+    * @method addAscore
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.addAscore('team_id', 'match_id', [{"team1": 3, "team2": 2}])
     *
     * @param {String} teamID Team ID
     * @param {String} matchID Match ID
@@ -97,6 +123,10 @@ module.exports = class ApiMatch extends ApiRoute {
 
    /**
     * Supprime le score d'un match
+    * @method removeScore
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.removeScore('match_id')
     *
     * @param {String} matchID Match ID
     * @returns {Promise<Object>} Résultat de la suppression
@@ -108,6 +138,10 @@ module.exports = class ApiMatch extends ApiRoute {
    // ==== Cast ====
    /**
     * Add a Caster (me) to the match
+    * @method assignCaster
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.assignCaster('match_id')
     *
     * @param {String} matchID Match ID
     * @returns {Promise<Object>} Résultat de l'ajout
@@ -118,6 +152,10 @@ module.exports = class ApiMatch extends ApiRoute {
 
    /**
     * Remove a caster (me) from the match
+    * @method removeCaster
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.removeCaster('match_id')
     *
     * @param {String} matchID Match ID
     * @returns {Promise<Object>} Résultat de la suppression
@@ -129,6 +167,10 @@ module.exports = class ApiMatch extends ApiRoute {
    // ==== Lineup ====
    /**
     * Assigner une ligneup a un match
+    * @method assignLineup
+    * @memberof ApiMatch
+    * @instance
+    * @example OlympeApi.matchs.assignLineup('match_id', 123)
     *
     * @param {String} matchID
     * @param {Number} lineupID

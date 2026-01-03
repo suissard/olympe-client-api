@@ -16,6 +16,7 @@ const ApiUsers = require("./routes/ApiUsers");
 
 /**
  * Gestion des requêtes à l'API
+ * @class OlympeApi
  */
 module.exports = class OlympeApi {
 	/**

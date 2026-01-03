@@ -2,10 +2,15 @@ const ApiRoute = require('../ApiRoute.js')
 
 /**
  * Différentes méthodes associées aux routes de l'api
+ * @class ApiMarketPlace
  */
 module.exports = class ApiMarketPlace extends ApiRoute {
    /**
     * Liste des utilisateurs disponibles dans le marketplace
+    * @method list
+    * @memberof ApiMarketPlace
+    * @instance
+    * @example OlympeApi.marketplace.list(1, 1)
     * @param {number} challengeID
     * @param {number} page
     * @param {number} segmentId
@@ -29,6 +34,10 @@ module.exports = class ApiMarketPlace extends ApiRoute {
 
    /**
     * Historique du marketplace
+    * @method getHistory
+    * @memberof ApiMarketPlace
+    * @instance
+    * @example OlympeApi.marketplace.getHistory(1, {}, 1, 'base_id')
     * @param {number} page
     * @param {Object} filters
     * @param {string[]} filters.types
@@ -53,6 +62,10 @@ module.exports = class ApiMarketPlace extends ApiRoute {
 
    /**
     * Quotas du marketplace
+    * @method getQuota
+    * @memberof ApiMarketPlace
+    * @instance
+    * @example OlympeApi.marketplace.getQuota(1, 'team_id')
     * @param {number} challengeId
     * @param {string} teamId
     * @returns {Promise<Object>}
@@ -68,6 +81,10 @@ module.exports = class ApiMarketPlace extends ApiRoute {
 
    /**
     * Envoie une invitation de prêt/transfert à un joueur d'une autre équipe
+    * @method sendInvit
+    * @memberof ApiMarketPlace
+    * @instance
+    * @example OlympeApi.marketplace.sendInvit({ invitationType: 'lent', userIDSource: 'user_id', ... })
     *
     * @param {Object} payload
     * @param {'lent' | 'transfer'} payload.invitationType

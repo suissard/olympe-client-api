@@ -3,10 +3,15 @@ const ApiRoute = require('../ApiRoute.js')
 
 /**
  * Différentes méthodes associées aux routes de l'api
+ * @class ApiPool
  */
 module.exports = class ApiPool extends ApiRoute {
    /**
     * List a pool
+    * @method list
+    * @memberof ApiPool
+    * @instance
+    * @example OlympeApi.pools.list(1)
     * @param {number} challengeID
     * @param {Object} [query] Filtres
     * @returns {Promise<Object[]>} Liste des poules
@@ -19,6 +24,10 @@ module.exports = class ApiPool extends ApiRoute {
 
    /**
     * Get pool ranking
+    * @method getRanking
+    * @memberof ApiPool
+    * @instance
+    * @example OlympeApi.pools.getRanking(1, 1)
     *
     * @param {Number} challengeID
     * @param {Number} poolID

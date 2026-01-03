@@ -4,23 +4,20 @@ const user = (data) => ({ ...data, username: data.username || 'No username' });
 
 /**
  * Différentes méthodes associées aux routes de l'api
+ * @class ApiUser
  */
 module.exports = class ApiUser extends ApiRoute {
+
    /**
     * Get user data by id
-    *
-    * @param {String} id
-    * @param {Object} fields Fields permettant de récupérer des clés précises de l'objet user
-    * @param {['thirdpartiesDiscord' | 'battlenetBtag' | 'email']} fields.fields
-    *
-    * @returns {Object} Renvoie un objet d'utilisateur
-    */
-   /**
-    * Get user data by id
+    * @method get
+    * @memberof ApiUser
+    * @instance
+    * @example OlympeApi.users.get('user_id')
     *
     * @param {String} id
     * @param {Object} [fields] Fields permettant de récupérer des clés précises de l'objet user
-    * @param {['thirdpartiesDiscord' | 'battlenetBtag' | 'email']} [fields.fields]
+    * @param {Array<('thirdpartiesDiscord' | 'battlenetBtag' | 'email')>} [fields.fields]
     *
     * @returns {Promise<Object>} Renvoie un objet d'utilisateur
     */
@@ -30,6 +27,10 @@ module.exports = class ApiUser extends ApiRoute {
 
    /**
     * Recuperer les données utilisateurs en mode administrateur (ne contient pas les donnée de teams)
+    * @method search
+    * @memberof ApiUser
+    * @instance
+    * @example OlympeApi.users.search('user_id')
     * @param {String} id
     * @returns {Promise<Object>}
     */
@@ -45,6 +46,10 @@ module.exports = class ApiUser extends ApiRoute {
    /**
     * Route accessible uniquement par l'utilisateur en question.
     * Feed personnalisé contenant l'historique de l'utilisateur (public+private) + de ses teams (public+team_only)
+    * @method getPrivateActus
+    * @memberof ApiUser
+    * @instance
+    * @example OlympeApi.users.getPrivateActus('user_id')
     *
     * @param {String} userID Identifiant de l'utilisateur
     * @returns {Promise<Object[]>} Liste d'activités
@@ -55,6 +60,10 @@ module.exports = class ApiUser extends ApiRoute {
 
    /**
     * Historique publique d'un utilisateur
+    * @method getPublicActus
+    * @memberof ApiUser
+    * @instance
+    * @example OlympeApi.users.getPublicActus('user_id')
     *
     * @param {String} userID Identifiant de l'utilisateur
     * @returns {Promise<Object[]>} Liste d'activités
@@ -66,6 +75,10 @@ module.exports = class ApiUser extends ApiRoute {
 
    /**
     * Liste des invitations à rejoindre une équipe pour un utilisateur
+    * @method listInvitationsToJoinTeam
+    * @memberof ApiUser
+    * @instance
+    * @example OlympeApi.users.listInvitationsToJoinTeam('user_id')
     * 
     * @param {String} userID Identifiant de l'utilisateur
     * @returns {Promise<Object[]>} Liste des invitations
@@ -76,6 +89,10 @@ module.exports = class ApiUser extends ApiRoute {
 
    /**
     * Met à jour les liens externes d'un utilisateur
+    * @method putExternalLinks
+    * @memberof ApiUser
+    * @instance
+    * @example OlympeApi.users.putExternalLinks('user_id', { twitter: 'url' })
     *
     * @param {String} userId Identifiant de l'utilisateur
     * @param {Object} data Données des liens externes
@@ -87,6 +104,10 @@ module.exports = class ApiUser extends ApiRoute {
 
    /**
     * Met à jour les informations d'un utilisateur
+    * @method update
+    * @memberof ApiUser
+    * @instance
+    * @example OlympeApi.users.update('user_id', { name: 'New Name' })
     *
     * @param {String} id UserID
     * @param {Object} data Data to Update (ex : name=toto)

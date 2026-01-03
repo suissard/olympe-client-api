@@ -3,10 +3,15 @@ const ApiRoute = require('../ApiRoute.js')
 
 /**
  * Différentes méthodes associées aux routes de l'api
+ * @class ApiStep
  */
 module.exports = class ApiStep extends ApiRoute {
    /**
     * List steps
+    * @method list
+    * @memberof ApiStep
+    * @instance
+    * @example OlympeApi.steps.list(1)
     *
     * @param {Number} challengeId
     * @returns {Promise<Object[]>} Liste des étapes
@@ -17,6 +22,10 @@ module.exports = class ApiStep extends ApiRoute {
 
    /**
     * Récupère le classement d'une étape
+    * @method getRanking
+    * @memberof ApiStep
+    * @instance
+    * @example OlympeApi.steps.getRanking(1, 1, {})
     *
     * @param {Number} idChallenge
     * @param {Number} idStep

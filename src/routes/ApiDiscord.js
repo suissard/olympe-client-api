@@ -1,9 +1,16 @@
 const ApiRoute = require('../ApiRoute.js')
 
 
+/**
+ * @class ApiDiscord
+ */
 module.exports = class ApiDiscord extends ApiRoute {
    /**
     * Récupère l'URL d'authentification Discord
+    * @method getDiscordAuthUrl
+    * @memberof ApiDiscord
+    * @instance
+    * @example OlympeApi.discord.getDiscordAuthUrl()
     * @returns {Promise<Object>} URL d'authentification
     */
    getDiscordAuthUrl() {
