@@ -1,14 +1,14 @@
 name: Publish to NPM
 on:
   release:
-    types: [created] # Se lance quand tu crées une Release sur GitHub
+    types: [created]
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write # ⚠️ INDISPENSABLE pour que NPM fasse confiance à GitHub
+      id-token: write # Indispensable pour l'auth sans secret
 
     steps:
       - uses: actions/checkout@v4
@@ -16,13 +16,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-          registry-url: 'https://registry.npmjs.org'
+          # J'ai RETIRÉ 'registry-url' ici car il force la création d'un .npmrc 
+          # qui attend un token classique, ce qui cause ton bug.
 
       - run: npm ci
       
-      # La commande magique qui utilise l'authentification sans secret
+      # J'ai RETIRÉ le bloc 'env' avec le token secret. 
+      # Grâce à '--provenance' et 'id-token: write', npm va s'authentifier tout seul via OIDC.
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 
-          # Note : Avec le Trusted Publishing configuré, setup-node génère 
-          # un token temporaire automatiquement ici.
