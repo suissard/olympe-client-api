@@ -1,6 +1,7 @@
 /**
  * @category Data Models
  * @description Represents a Ticket in the Olympe API.
+ * @hideconstructor
  */
 class Ticket {
     /**

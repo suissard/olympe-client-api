@@ -1,6 +1,7 @@
 /**
  * @category Data Models
  * @description Represents a Match in the Olympe API.
+ * @hideconstructor
  */
 class Match {
     /**

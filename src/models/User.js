@@ -1,6 +1,7 @@
 /**
  * @category Data Models
  * @description Represents a User in the Olympe API.
+ * @hideconstructor
  */
 class User {
     /**

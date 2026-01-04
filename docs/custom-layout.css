@@ -1,8 +1,7 @@
-
 /* Grid Container */
 .custom-method-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 350px 1fr; /* Name/Info on left, Params take the rest */
     gap: 20px;
     border-bottom: 1px solid #444; /* Dark separator */
     padding-bottom: 2rem;
@@ -17,7 +16,7 @@
     }
 }
 
-/* Col 1: name, description, examples */
+/* Col 1: name, description, examples, returns */
 .method-col-info {
     min-width: 0; /* Prevent overflow */
 }
@@ -25,14 +24,7 @@
 /* Col 2: parameters */
 .method-col-params {
     min-width: 0;
-    max-height: 400px; /* Limit height to trigger scroll for long lists */
-    overflow-y: auto;  /* Enable internal scrolling */
-    position: relative; /* Context for sticky */
-}
-
-/* Col 3: returns */
-.method-col-returns {
-    min-width: 0;
+    /* Removed max-height and overflow to show full content */
 }
 
 /* Tweaks to look better in columns */
@@ -81,4 +73,40 @@ h3.name span.type-signature:last-child {
     background-color: #1e2229; /* Match card/bg color to cover content scrolling under */
     z-index: 10;
     box-shadow: 0 1px 0 #444; /* Border replacement for sticky element */
+}
+
+/* --- MEMBER GRID STYLES --- */
+.custom-member-row {
+    display: grid;
+    /* Fixed width for Name and Type, fluid for Desc */
+    grid-template-columns: 250px 300px 1fr;
+    gap: 15px;
+    align-items: center; /* Center vertically specifically for single lines */
+    border-bottom: 1px solid #333;
+    padding: 8px 0;
+}
+
+.member-col-name {
+    font-weight: bold;
+    color: #ffd700; /* Goldish */
+    font-size: 0.95rem;
+    word-break: break-all; /* if verry long */
+}
+
+.member-col-type {
+    font-family: 'Consolas', 'Monaco', monospace;
+    color: #61afef; /* Light blue often used for types */
+    font-size: 0.9rem;
+    word-break: break-all;
+}
+
+.member-col-desc {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Adjust paragraph margins in desc to fit compact line */
+.member-col-desc p {
+    margin: 0;
 }

@@ -1,6 +1,7 @@
 /**
  * @category Data Models
  * @description Represents an Organization in the Olympe API.
+ * @hideconstructor
  */
 class Organization {
     /**

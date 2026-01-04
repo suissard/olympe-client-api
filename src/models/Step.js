@@ -1,6 +1,7 @@
 /**
  * @category Data Models
  * @description Represents a Step (phase of a tournament) in the Olympe API.
+ * @hideconstructor
  */
 class Step {
     /**
