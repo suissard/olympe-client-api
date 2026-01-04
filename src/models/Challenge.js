@@ -1,5 +1,4 @@
 /**
- * @class Challenge
  * @category Data Models
  * @description Represents a Challenge (Tournament/Competition) in the Olympe API.
  */
@@ -25,25 +24,46 @@ class Challenge {
         this.name = data.name;
 
         /**
-         * @type {string}
-         * @description Main language
-         */
-        this.language = data.language;
-
-        /**
-         * @type {string}
-         * @description Link to the competition rules. Can by empty.
-         */
-        this.challengeRulesURL = data.challengeRulesURL;
-
-        /**
          * @type {object}
-         * @description Object containing additional data like teams
+         * @description Format of the Challenge
          */
-        this.object = data.object ? {
-            ...data.object,
-            teams: data.object.teams?.map(t => new Team(t))
-        } : undefined;
+        this.format = data.format;
+
+        /**
+         * @type {number}
+         * @description Number of teams/players
+         */
+        this.size = data.size;
+
+        /**
+         * @type {number}
+         * @description Status of the Challenge
+         */
+        this.status = data.status;
+
+        /**
+         * @type {string}
+         * @description Start date of the Challenge
+         */
+        this.date = data.date;
+
+        /**
+         * @type {boolean}
+         * @description Subscription status
+         */
+        this.subscription = data.subscription;
+
+        /**
+         * @type {string}
+         * @description Logo URL
+         */
+        this.logo = data.logo;
+
+        /**
+         * @type {string}
+         * @description Cover URL (banner)
+         */
+        this.cover = data.cover;
     }
 }
 

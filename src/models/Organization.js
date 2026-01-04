@@ -1,5 +1,4 @@
 /**
- * @class Organization
  * @category Data Models
  * @description Represents an Organization in the Olympe API.
  */

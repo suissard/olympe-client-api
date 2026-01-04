@@ -1,5 +1,4 @@
 /**
- * @class Ticket
  * @category Data Models
  * @description Represents a Ticket in the Olympe API.
  */

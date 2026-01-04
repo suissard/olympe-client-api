@@ -1,5 +1,4 @@
 /**
- * @class Team
  * @category Data Models
  * @description Represents a Team in the Olympe API.
  */

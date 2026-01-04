@@ -1,5 +1,4 @@
 /**
- * @class User
  * @category Data Models
  * @description Represents a User in the Olympe API.
  */

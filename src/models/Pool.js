@@ -1,5 +1,4 @@
 /**
- * @class Pool
  * @category Data Models
  * @description Represents a Pool in the Olympe API.
  */

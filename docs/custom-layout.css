@@ -1,0 +1,84 @@
+
+/* Grid Container */
+.custom-method-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    border-bottom: 1px solid #444; /* Dark separator */
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    align-items: start;
+}
+
+/* Make it responsive - back to 1 column on small screens */
+@media (max-width: 1200px) {
+    .custom-method-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Col 1: name, description, examples */
+.method-col-info {
+    min-width: 0; /* Prevent overflow */
+}
+
+/* Col 2: parameters */
+.method-col-params {
+    min-width: 0;
+    max-height: 400px; /* Limit height to trigger scroll for long lists */
+    overflow-y: auto;  /* Enable internal scrolling */
+    position: relative; /* Context for sticky */
+}
+
+/* Col 3: returns */
+.method-col-returns {
+    min-width: 0;
+}
+
+/* Tweaks to look better in columns */
+.method-member-container {
+    margin-top: 0 !important; /* override default margin */
+    margin-bottom: 1rem;
+}
+
+h3.name {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #ffd700; /* Goldish highlight */
+    word-break: break-word;
+}
+
+/* Hide the return type arrow and type in the header, user request */
+/* Using specific selector to target the last span */
+h3.name .type-signature:last-of-type,
+h3.name span.type-signature:last-child {
+    display: none !important;
+}
+
+.description p {
+    margin: 5px 0;
+}
+
+/* Compact tables for parameters */
+.params {
+    width: 100%;
+    font-size: 0.9rem;
+    border-collapse: separate; /* Required for sticky to work well with borders sometimes */
+    border-spacing: 0;
+}
+
+.params th, .params td {
+    padding: 6px 8px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+/* Sticky Header for Parameters */
+.params th {
+    position: sticky;
+    top: 0;
+    background-color: #1e2229; /* Match card/bg color to cover content scrolling under */
+    z-index: 10;
+    box-shadow: 0 1px 0 #444; /* Border replacement for sticky element */
+}

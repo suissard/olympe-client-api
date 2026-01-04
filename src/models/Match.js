@@ -1,5 +1,4 @@
 /**
- * @class Match
  * @category Data Models
  * @description Represents a Match in the Olympe API.
  */

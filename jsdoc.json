@@ -19,13 +19,28 @@
           "name": "description",
           "content": "Documentation for the Olympe Client API"
         }
+      ],
+      "add_style_path": [
+        {
+          "href": "custom-layout.css",
+          "rel": "stylesheet",
+          "media": "all"
+        }
+      ],
+      "add_script_path": [
+        {
+          "src": "custom-layout.js"
+        }
       ]
     }
   },
   "plugins": ["plugins/markdown"],
   "templates": {
     "default": {
-      "outputSourceFiles": false
+      "outputSourceFiles": false,
+      "staticFiles": {
+        "include": ["docs-assets"]
+      }
     }
   }
 }
