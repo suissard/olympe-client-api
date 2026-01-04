@@ -3,7 +3,7 @@ const ApiRoute = require('../ApiRoute.js')
 
 /**
  * Différentes méthodes associées aux routes de l'api
- * @class ApiSegment
+ * @namespace ApiSegment
  */
 module.exports = class ApiSegment extends ApiRoute {
    /**

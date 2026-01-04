@@ -1,5 +1,6 @@
 /**
  * @class Step
+ * @category Data Models
  * @description Represents a Step (phase of a tournament) in the Olympe API.
  */
 class Step {
@@ -52,8 +53,8 @@ class Step {
          * @description List of items (TeamPoints)
          */
         this.items = data.items?.map(item => ({
-             ...item,
-             team: item.team ? new Team(item.team) : undefined
+            ...item,
+            team: item.team ? new Team(item.team) : undefined
         }));
     }
 }

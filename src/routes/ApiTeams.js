@@ -1,9 +1,9 @@
 const ApiRoute = require('../ApiRoute.js')
-const Team = require('../models/Team');
+const TeamModel = require('../models/Team');
 
 /**
  * Différentes méthodes associées aux routes de l'api
- * @class ApiTeam
+ * @namespace ApiTeam
  */
 module.exports = class ApiTeam extends ApiRoute {
    // === Get teams(s)
@@ -20,7 +20,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @returns {Promise<Team>} Équipe
     */
    get(teamID, fields) {
-      return this.api.get(`teams/${teamID}${this.api.getFields(fields)}`).then((data) => new Team(data))
+      return this.api.get(`teams/${teamID}${this.api.getFields(fields)}`).then((data) => new TeamModel(data))
    }
 
    /**
@@ -32,7 +32,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @returns {Promise<Team[]>} Liste des équipes
     */
    list() {
-      return this.api.get('teams').then((list) => list.map((data) => new Team(data)))
+      return this.api.get('teams').then((list) => list.map((data) => new TeamModel(data)))
    }
 
    // ==== Manage team ====
@@ -49,7 +49,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @returns {Promise<Team>} Team created
     */
    create(name, nationality) {
-      return this.api.post('teams', { name, nationality }).then((data) => new Team(data))
+      return this.api.post('teams', { name, nationality }).then((data) => new TeamModel(data))
    }
 
    /**

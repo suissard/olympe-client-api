@@ -1,10 +1,10 @@
 const ApiRoute = require('../ApiRoute.js')
-const Pool = require('../models/Pool');
+const PoolModel = require('../models/Pool');
 
 
 /**
  * Différentes méthodes associées aux routes de l'api
- * @class ApiPool
+ * @namespace ApiPool
  */
 module.exports = class ApiPool extends ApiRoute {
    /**
@@ -20,7 +20,7 @@ module.exports = class ApiPool extends ApiRoute {
    list(challengeID, query) {
       const urlAdd = query ? `?${this.api.jsonToFormUrlEncoder(query)}` : ''
 
-      return this.api.get(`challenges/${challengeID}/pools${urlAdd}`).then(list => Array.isArray(list) ? list.map(data => new Pool(data)) : list)
+      return this.api.get(`challenges/${challengeID}/pools${urlAdd}`).then(list => Array.isArray(list) ? list.map(data => new PoolModel(data)) : list)
    }
 
    /**
@@ -47,7 +47,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @returns {Promise<Pool>}
     */
    get(challengeID, poolID) {
-      return this.api.get(`challenges/${challengeID}/pools/${poolID}`).then(data => new Pool(data))
+      return this.api.get(`challenges/${challengeID}/pools/${poolID}`).then(data => new PoolModel(data))
    }
 
    /**
@@ -60,7 +60,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @returns {Promise<Pool>}
     */
    create(challengeID, data) {
-      return this.api.post(`challenges/${challengeID}/pools`, data).then(data => new Pool(data))
+      return this.api.post(`challenges/${challengeID}/pools`, data).then(data => new PoolModel(data))
    }
 
    /**
@@ -74,7 +74,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @returns {Promise<Pool>}
     */
    update(challengeID, poolID, data) {
-      return this.api.put(`challenges/${challengeID}/pools/${poolID}`, data).then(data => new Pool(data))
+      return this.api.put(`challenges/${challengeID}/pools/${poolID}`, data).then(data => new PoolModel(data))
    }
 
    /**

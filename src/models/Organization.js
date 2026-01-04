@@ -1,5 +1,6 @@
 /**
  * @class Organization
+ * @category Data Models
  * @description Represents an Organization in the Olympe API.
  */
 class Organization {
@@ -57,7 +58,7 @@ class Organization {
         this.maxMembersPerTeam = data.maxMembersPerTeam;
         this.maxPlayersPerTeam = data.maxPlayersPerTeam;
         this.paypalBusinessID = data.paypalBusinessID;
-        
+
         // Marketplace settings
         this.marketplaceLentDurationDays = data.marketplaceLentDurationDays;
         this.marketplaceShowUsersWithoutTeam = data.marketplaceShowUsersWithoutTeam;

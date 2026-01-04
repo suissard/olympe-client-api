@@ -1,10 +1,10 @@
 const ApiRoute = require('../ApiRoute.js')
-const Match = require('../models/Match');
+const MatchModel = require('../models/Match');
 
 
 /**
  * Différentes méthodes associées aux routes de l'api
- * @class ApiMatch
+ * @namespace ApiMatch
  * @lends ApiMatch.prototype
  */
 module.exports = class ApiMatch extends ApiRoute {
@@ -30,7 +30,7 @@ module.exports = class ApiMatch extends ApiRoute {
    list(query) {
       const urlAdd = query ? `?${this.api.jsonToFormUrlEncoder(query)}` : ''
 
-      return this.api.get(`matchs${urlAdd}`).then(list => list.map(data => new Match(data)))
+      return this.api.get(`matchs${urlAdd}`).then(list => list.map(data => new MatchModel(data)))
    }
 
    /**
@@ -46,7 +46,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @returns {Promise<Match>} Match
     */
    get(matchID, fields) {
-      return this.api.get(`matchs/${matchID}${this.api.getFields(fields)}`).then(data => new Match(data))
+      return this.api.get(`matchs/${matchID}${this.api.getFields(fields)}`).then(data => new MatchModel(data))
    }
 
    // ==== Schedule ====

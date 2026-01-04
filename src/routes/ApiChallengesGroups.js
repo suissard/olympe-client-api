@@ -1,8 +1,8 @@
 const ApiRoute = require('../ApiRoute.js');
 
 /**
- * Methods for ChallengesGroups routes
- * @class ApiChallengesGroups
+ * Différentes méthodes associées aux routes de l'api
+ * @namespace ApiChallengesGroups
  */
 module.exports = class ApiChallengesGroups extends ApiRoute {
     /**

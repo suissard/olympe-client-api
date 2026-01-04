@@ -2,7 +2,7 @@ const ApiRoute = require('../ApiRoute.js')
 
 /**
  * Différentes méthodes associées aux routes de l'api
- * @class ApiMarketPlace
+ * @namespace ApiMarketPlace
  */
 module.exports = class ApiMarketPlace extends ApiRoute {
    /**

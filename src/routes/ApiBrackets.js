@@ -1,8 +1,8 @@
 const ApiRoute = require('../ApiRoute.js');
 
 /**
- * Methods for Brackets routes
- * @class ApiBrackets
+ * Différentes méthodes associées aux routes de l'api
+ * @namespace ApiBrackets
  */
 module.exports = class ApiBrackets extends ApiRoute {
     /**
@@ -14,7 +14,7 @@ module.exports = class ApiBrackets extends ApiRoute {
      * @returns {Promise<any>}
      */
     delete(idBracket) {
-        return this.api.delete(`brackets/${idBracket}`);
+        return this.api.delete(`brackets / ${idBracket} `);
     }
 
     /**
@@ -26,7 +26,7 @@ module.exports = class ApiBrackets extends ApiRoute {
      * @returns {Promise<any>}
      */
     deleteConfig(id) {
-        return this.api.delete(`bracketsconfigs/${id}`);
+        return this.api.delete(`bracketsconfigs / ${id} `);
     }
 
     /**
@@ -38,7 +38,7 @@ module.exports = class ApiBrackets extends ApiRoute {
      * @returns {Promise<any>}
      */
     get(idBracket) {
-        return this.api.get(`brackets/${idBracket}`);
+        return this.api.get(`brackets / ${idBracket} `);
     }
 
     /**
@@ -50,7 +50,7 @@ module.exports = class ApiBrackets extends ApiRoute {
      * @returns {Promise<any>}
      */
     getConfig(id) {
-        return this.api.get(`bracketsconfigs/${id}`);
+        return this.api.get(`bracketsconfigs / ${id} `);
     }
 
     /**
@@ -62,7 +62,7 @@ module.exports = class ApiBrackets extends ApiRoute {
      * @returns {Promise<any>}
      */
     getRanking(idBracket) {
-        return this.api.get(`brackets/${idBracket}/ranking`);
+        return this.api.get(`brackets / ${idBracket}/ranking`);
     }
 
     /**

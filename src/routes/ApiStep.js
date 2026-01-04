@@ -1,10 +1,10 @@
 const ApiRoute = require('../ApiRoute.js')
-const Step = require('../models/Step');
+const StepModel = require('../models/Step');
 
 
 /**
  * Différentes méthodes associées aux routes de l'api
- * @class ApiStep
+ * @namespace ApiStep
  */
 module.exports = class ApiStep extends ApiRoute {
    /**
@@ -18,7 +18,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @returns {Promise<Step[]>} Liste des étapes
     */
    list(challengeId) {
-      return this.api.get(`challenges/${challengeId}/steps`).then(list => list.map(data => new Step(data)))
+      return this.api.get(`challenges/${challengeId}/steps`).then(list => list.map(data => new StepModel(data)))
    }
 
    /**
@@ -48,7 +48,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @returns {Promise<Step>}
     */
    get(challengeID, stepID) {
-      return this.api.get(`challenges/${challengeID}/steps/${stepID}`).then(data => new Step(data))
+      return this.api.get(`challenges/${challengeID}/steps/${stepID}`).then(data => new StepModel(data))
    }
 
    /**
@@ -61,7 +61,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @returns {Promise<Step>}
     */
    create(challengeID, data) {
-      return this.api.post(`challenges/${challengeID}/steps`, data).then(data => new Step(data))
+      return this.api.post(`challenges/${challengeID}/steps`, data).then(data => new StepModel(data))
    }
 
    /**
@@ -75,7 +75,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @returns {Promise<Step>}
     */
    update(challengeID, stepID, data) {
-      return this.api.put(`challenges/${challengeID}/steps/${stepID}`, data).then(data => new Step(data))
+      return this.api.put(`challenges/${challengeID}/steps/${stepID}`, data).then(data => new StepModel(data))
    }
 
    /**

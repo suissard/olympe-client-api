@@ -1,9 +1,9 @@
 const ApiRoute = require('../ApiRoute.js');
-const User = require('../models/User');
+const UserModel = require('../models/User');
 
 /**
  * Différentes méthodes associées aux routes de l'api
- * @class ApiUser
+ * @namespace ApiUser
  */
 module.exports = class ApiUser extends ApiRoute {
 
@@ -21,7 +21,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @returns {Promise<User>} Renvoie un objet d'utilisateur
     */
    get(id, fields) {
-      return this.api.get(`users/${id}${this.api.getFields(fields)}`).then((data) => new User(data))
+      return this.api.get(`users/${id}${this.api.getFields(fields)}`).then((data) => new UserModel(data))
    }
 
    /**
@@ -40,7 +40,7 @@ module.exports = class ApiUser extends ApiRoute {
          {
             search: id,
          }
-      ).then(data => new User(data));
+      ).then(data => new UserModel(data));
    }
 
    /**
@@ -99,7 +99,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @returns {Promise<User>} Utilisateur mis à jour
     */
    putExternalLinks(userId, data) {
-      return this.api.put(`users/${userId}/external-links`, data).then(data => new User(data));
+      return this.api.put(`users/${userId}/external-links`, data).then(data => new UserModel(data));
    }
 
    /**
@@ -115,7 +115,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @returns {Promise<User>} Utilisateur mis à jour
     */
    update(id, data, file = false) {
-      return this.api.put(`users/${id}`, data, file).then(data => new User(data));
+      return this.api.put(`users/${id}`, data, file).then(data => new UserModel(data));
    }
    /**
     * Supprimer l'image de profil

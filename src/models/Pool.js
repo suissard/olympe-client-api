@@ -1,5 +1,6 @@
 /**
  * @class Pool
+ * @category Data Models
  * @description Represents a Pool in the Olympe API.
  */
 class Pool {
@@ -76,8 +77,8 @@ class Pool {
          * @description List of TeamPoints
          */
         this.items = data.items?.map(item => ({
-             ...item,
-             team: item.team ? new Team(item.team) : undefined
+            ...item,
+            team: item.team ? new Team(item.team) : undefined
         }));
     }
 }

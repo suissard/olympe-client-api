@@ -1,10 +1,10 @@
 const ApiRoute = require('../ApiRoute.js')
-const Ticket = require('../models/Ticket');
+const TicketModel = require('../models/Ticket');
 
 
 /**
  * Différentes méthodes associées aux routes de l'api
- * @class ApiTicket
+ * @namespace ApiTicket
  */
 module.exports = class ApiTicket extends ApiRoute {
    /**
@@ -20,7 +20,7 @@ module.exports = class ApiTicket extends ApiRoute {
     */
    list(challengeId, active) {
       const urlAdd = active ? `?${this.api.jsonToFormUrlEncoder({ active: 'true' })}` : ''
-      return this.api.get(`challenges/${challengeId}/tickets${urlAdd}`).then(list => list.map(data => new Ticket(data)))
+      return this.api.get(`challenges/${challengeId}/tickets${urlAdd}`).then(list => list.map(data => new TicketModel(data)))
    }
 
    /**
@@ -50,7 +50,7 @@ module.exports = class ApiTicket extends ApiRoute {
     * @returns {Promise<Ticket>}
     */
    get(challengeID, ticketID) {
-      return this.api.get(`challenges/${challengeID}/tickets/${ticketID}`).then(data => new Ticket(data))
+      return this.api.get(`challenges/${challengeID}/tickets/${ticketID}`).then(data => new TicketModel(data))
    }
 
    /**
@@ -63,7 +63,7 @@ module.exports = class ApiTicket extends ApiRoute {
     * @returns {Promise<Ticket>}
     */
    create(challengeID, data) {
-      return this.api.post(`challenges/${challengeID}/tickets`, data).then(data => new Ticket(data))
+      return this.api.post(`challenges/${challengeID}/tickets`, data).then(data => new TicketModel(data))
    }
 
    /**
@@ -77,7 +77,7 @@ module.exports = class ApiTicket extends ApiRoute {
     * @returns {Promise<Ticket>}
     */
    update(challengeID, ticketID, data) {
-      return this.api.put(`challenges/${challengeID}/tickets/${ticketID}`, data).then(data => new Ticket(data))
+      return this.api.put(`challenges/${challengeID}/tickets/${ticketID}`, data).then(data => new TicketModel(data))
    }
 
    /**

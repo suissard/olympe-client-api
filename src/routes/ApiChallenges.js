@@ -1,10 +1,10 @@
 const ApiRoute = require('../ApiRoute.js')
-const Challenge = require('../models/Challenge');
+const ChallengeModel = require('../models/Challenge');
 
 
 /**
  * Différentes méthodes associées aux routes de l'api
- * @class ApiChallenge
+ * @namespace ApiChallenge
  */
 module.exports = class ApiChallenge extends ApiRoute {
    /**
@@ -20,7 +20,7 @@ module.exports = class ApiChallenge extends ApiRoute {
       const urlAdd = active ? `?${this.api.jsonToFormUrlEncoder({ active: 'true' })}` : ''
 
       return this.api.get(`challenges${urlAdd}`).then((data) => {
-         if (data && data.length > 0) return data.map(d => new Challenge(d))
+         if (data && data.length > 0) return data.map(d => new ChallengeModel(d))
 
          return []
       })
@@ -34,7 +34,7 @@ module.exports = class ApiChallenge extends ApiRoute {
     * @returns {Promise<Challenge>} Challenge créé
     */
    create(data) {
-      return this.api.post('challenges', data).then(data => new Challenge(data))
+      return this.api.post('challenges', data).then(data => new ChallengeModel(data))
    }
 
    /**
@@ -46,7 +46,7 @@ module.exports = class ApiChallenge extends ApiRoute {
     * @returns {Promise<Challenge>} Challenge
     */
    get(id) {
-      return this.api.get(`challenges/${id}`).then(data => new Challenge(data))
+      return this.api.get(`challenges/${id}`).then(data => new ChallengeModel(data))
    }
 
    /**
@@ -59,7 +59,7 @@ module.exports = class ApiChallenge extends ApiRoute {
     * @returns {Promise<Challenge>} Challenge mis à jour
     */
    update(id, data) {
-      return this.api.put(`challenges/${id}`, data).then(data => new Challenge(data))
+      return this.api.put(`challenges/${id}`, data).then(data => new ChallengeModel(data))
    }
 
    /**

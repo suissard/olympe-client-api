@@ -6,11 +6,13 @@ const docsDir = path.join(__dirname, 'docs');
 
 console.log('Starting documentation generation...');
 
-// 1. Ensure docs directory exists
-if (!fs.existsSync(docsDir)) {
-    fs.mkdirSync(docsDir);
-    console.log('Created docs directory.');
+// 1. Ensure docs directory exists (clean it first)
+if (fs.existsSync(docsDir)) {
+    fs.rmSync(docsDir, { recursive: true, force: true });
+    console.log('Cleaned docs directory.');
 }
+fs.mkdirSync(docsDir);
+console.log('Created docs directory.');
 
 // 2. Generate client API docs using JSDoc
 console.log('Generating client API docs...');

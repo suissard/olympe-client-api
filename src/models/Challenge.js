@@ -1,5 +1,6 @@
 /**
  * @class Challenge
+ * @category Data Models
  * @description Represents a Challenge (Tournament/Competition) in the Olympe API.
  */
 class Challenge {
@@ -40,8 +41,8 @@ class Challenge {
          * @description Object containing additional data like teams
          */
         this.object = data.object ? {
-             ...data.object,
-             teams: data.object.teams?.map(t => new Team(t))
+            ...data.object,
+            teams: data.object.teams?.map(t => new Team(t))
         } : undefined;
     }
 }

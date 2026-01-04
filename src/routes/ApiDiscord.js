@@ -2,7 +2,8 @@ const ApiRoute = require('../ApiRoute.js')
 
 
 /**
- * @class ApiDiscord
+ * Différentes méthodes associées aux routes de l'api
+ * @namespace ApiDiscord
  */
 module.exports = class ApiDiscord extends ApiRoute {
    /**

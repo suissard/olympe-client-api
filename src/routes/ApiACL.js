@@ -1,8 +1,8 @@
 const ApiRoute = require('../ApiRoute.js');
 
 /**
- * Methods for ACL routes
- * @class ApiACL
+ * Différentes méthodes associées aux routes de l'api
+ * @namespace ApiACL
  */
 module.exports = class ApiACL extends ApiRoute {
     /**

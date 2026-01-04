@@ -1,9 +1,9 @@
 const ApiRoute = require('../ApiRoute.js')
-const Organization = require('../models/Organization');
+const OrganizationModel = require('../models/Organization');
 
 /**
  * Differentes méthodes associés aux routes de l'Api
- * @class ApiOrganization
+ * @namespace ApiOrganization
  */
 module.exports = class ApiOrganization extends ApiRoute {
    /**
@@ -17,7 +17,7 @@ module.exports = class ApiOrganization extends ApiRoute {
     * @returns {Promise<Organization>} Organization configurations
     */
    getConfigs(id) {
-      return this.api.get(`organizations/${id}/configs`).then(data => new Organization(data))
+      return this.api.get(`organizations/${id}/configs`).then(data => new OrganizationModel(data))
    }
 
    /**
@@ -29,7 +29,7 @@ module.exports = class ApiOrganization extends ApiRoute {
     * @returns {Promise<Organization>}
     */
    get(id) {
-      return this.api.get(`organizations/${id}`).then(data => new Organization(data))
+      return this.api.get(`organizations/${id}`).then(data => new OrganizationModel(data))
    }
 
    /**
@@ -40,7 +40,7 @@ module.exports = class ApiOrganization extends ApiRoute {
     * @returns {Promise<Organization>}
     */
    getCurrent() {
-      return this.api.get(`organizations/current`).then(data => new Organization(data))
+      return this.api.get(`organizations/current`).then(data => new OrganizationModel(data))
    }
 
    /**
