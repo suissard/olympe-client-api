@@ -1,0 +1,28 @@
+name: Publish to NPM
+on:
+  release:
+    types: [created] # Se lance quand tu crées une Release sur GitHub
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # ⚠️ INDISPENSABLE pour que NPM fasse confiance à GitHub
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+      
+      # La commande magique qui utilise l'authentification sans secret
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 
+          # Note : Avec le Trusted Publishing configuré, setup-node génère 
+          # un token temporaire automatiquement ici.
