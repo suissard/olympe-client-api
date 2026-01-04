@@ -1,26 +1,21 @@
-name: Publish to NPM
+name: Publish Package
+
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - 'v*'
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
 
 jobs:
-  build-and-publish:
+  publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write # Indispensable pour l'auth sans secret
-
     steps:
       - uses: actions/checkout@v4
-      
       - uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
-          # J'ai RETIRÉ 'registry-url' ici car il force la création d'un .npmrc 
-          # qui attend un token classique, ce qui cause ton bug.
-
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      
-      # J'ai RETIRÉ le bloc 'env' avec le token secret. 
-      # Grâce à '--provenance' et 'id-token: write', npm va s'authentifier tout seul via OIDC.
-      - run: npm publish --provenance --access public
+      - run: npm publish
