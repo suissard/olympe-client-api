@@ -1,21 +1,29 @@
 name: Publish Package
-
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types: [created] # Mieux vaut trigger sur une release que sur un push de tag
+
 permissions:
-  id-token: write  # Required for OIDC
   contents: read
+  id-token: write # Indispensable pour que NPM trust GitHub
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '24' # Utilise une version LTS stable
           registry-url: 'https://registry.npmjs.org'
+
       - run: npm ci
-      - run: npm publish
+      
+      # C'est ici que tout se joue :
+      - run: npm publish --provenance --access public
+        env:
+          # setup-node a créé un .npmrc qui attend cette variable.
+          # On lui donne le token GitHub par défaut pour qu'il soit content.
+          # L'auth réelle se fera via '--provenance' (OIDC).
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
