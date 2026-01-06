@@ -13,7 +13,7 @@ module.exports = class ApiOrganization extends ApiRoute {
     * @instance
     * @example OlympeApi.organizations.getConfigs('org_id')
     *
-    * @param {String} id => Id of Organization
+    * @param {string} id => Id of Organization
     * @returns {Promise<Organization>} Organization configurations
     */
    getConfigs(id) {

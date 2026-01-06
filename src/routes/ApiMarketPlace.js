@@ -17,7 +17,7 @@ module.exports = class ApiMarketPlace extends ApiRoute {
     * @param {string} teamName
     * @param {string} usersNationalitie
     * @param {string} usersPreference
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    list(challengeID, page, segmentId, teamName, usersNationalitie, usersPreference) {
       const query = this.api.jsonToFormUrlEncoder({
@@ -39,12 +39,12 @@ module.exports = class ApiMarketPlace extends ApiRoute {
     * @instance
     * @example OlympeApi.marketplace.getHistory(1, {}, 1, 'base_id')
     * @param {number} page
-    * @param {Object} filters
+    * @param {object} filters
     * @param {string[]} filters.types
     * @param {string[]} filters.states
     * @param {number} challengeId
     * @param {string} baseId
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    getHistory(page, filters, challengeId, baseId) {
       const { types, states } = filters
@@ -68,7 +68,7 @@ module.exports = class ApiMarketPlace extends ApiRoute {
     * @example OlympeApi.marketplace.getQuota(1, 'team_id')
     * @param {number} challengeId
     * @param {string} teamId
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    getQuota(challengeId, teamId) {
       const query = this.api.jsonToFormUrlEncoder({
@@ -86,14 +86,14 @@ module.exports = class ApiMarketPlace extends ApiRoute {
     * @instance
     * @example OlympeApi.marketplace.sendInvit({ invitationType: 'lent', userIDSource: 'user_id', ... })
     *
-    * @param {Object} payload
+    * @param {object} payload
     * @param {'lent' | 'transfer'} payload.invitationType
     * @param {string} payload.userIDSource
     * @param {string} payload.teamIDSource
     * @param {string} payload.teamIDDest
     * @param {number} payload.challengeID
     * @param {number} payload.lentExpirationDate
-    * @return {Promise<Object>}
+    * @return {Promise<object>}
     */
    sendInvit(payload) {
       return this.api.post('marketplace/users/invitations', payload)
@@ -103,8 +103,8 @@ module.exports = class ApiMarketPlace extends ApiRoute {
     * @method createQuota
     * @memberof ApiMarketPlace
     * @instance
-    * @param {Object} data
-    * @returns {Promise<Object>}
+    * @param {object} data
+    * @returns {Promise<object>}
     */
    createQuota(data) {
       return this.api.post('marketplace/quotas', data)
@@ -116,8 +116,8 @@ module.exports = class ApiMarketPlace extends ApiRoute {
     * @memberof ApiMarketPlace
     * @instance
     * @param {string} id
-    * @param {Object} data
-    * @returns {Promise<Object>}
+    * @param {object} data
+    * @returns {Promise<object>}
     */
    updateQuota(id, data) {
       return this.api.put(`marketplace/quotas/${id}`, data)
@@ -129,7 +129,7 @@ module.exports = class ApiMarketPlace extends ApiRoute {
     * @memberof ApiMarketPlace
     * @instance
     * @param {string} id
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    deleteQuota(id) {
       return this.api.delete(`marketplace/quotas/${id}`)

@@ -14,7 +14,7 @@ module.exports = class ApiInvitation extends ApiRoute {
     * @example OlympeApi.invitations.remove('invitation_id')
     *
     * @param {string} invitationID Identifiant de l'invitation
-    * @returns {Promise<Object>} Résultat de la suppression
+    * @returns {Promise<object>} Résultat de la suppression
     */
    remove(invitationID) {
       return this.api.delete(`invitations/${invitationID}`)
@@ -29,7 +29,7 @@ module.exports = class ApiInvitation extends ApiRoute {
     *
     * @param {string} invitationID Identifiant de l'invitation
     * @param {0 | 1} accepted - 1: Accepter l'invitation / 0: Refuser l'invitation
-    * @returns {Promise<Object>} Résultat de la requête
+    * @returns {Promise<object>} Résultat de la requête
     */
    reply(invitationID, accepted) {
       return this.api.post(`invitations/${invitationID}`, {

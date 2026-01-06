@@ -30,7 +30,7 @@ module.exports = class ApiChallenge extends ApiRoute {
     * @method create
     * @memberof ApiChallenge
     * @instance
-    * @params {object} data
+    * @param {object} data
     * @returns {Promise<Challenge>} Challenge créé
     */
    create(data) {

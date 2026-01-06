@@ -13,8 +13,8 @@ module.exports = class ApiSegment extends ApiRoute {
     * @instance
     * @example OlympeApi.segments.list(1)
     *
-    * @param {Number} challengeID
-    * @returns {Promise<Object[]>} Liste des segments
+    * @param {number} challengeID
+    * @returns {Promise<object[]>} Liste des segments
     */
    list(challengeID) {
       return this.api.get(`challenges/${challengeID}/segments`)
@@ -25,8 +25,8 @@ module.exports = class ApiSegment extends ApiRoute {
     * @memberof ApiSegment
     * @instance
     * @param {string} challengeID
-    * @param {Object} data
-    * @returns {Promise<Object>}
+    * @param {object} data
+    * @returns {Promise<object>}
     */
    create(challengeID, data) {
       return this.api.post(`challenges/${challengeID}/segments`, data)
@@ -39,8 +39,8 @@ module.exports = class ApiSegment extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} segmentID
-    * @param {Object} data
-    * @returns {Promise<Object>}
+    * @param {object} data
+    * @returns {Promise<object>}
     */
    update(challengeID, segmentID, data) {
       return this.api.put(`challenges/${challengeID}/segments/${segmentID}`, data)
@@ -53,7 +53,7 @@ module.exports = class ApiSegment extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} segmentID
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    delete(challengeID, segmentID) {
       return this.api.delete(`challenges/${challengeID}/segments/${segmentID}`)

@@ -14,7 +14,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @instance
     * @example OlympeApi.steps.list(1)
     *
-    * @param {Number} challengeId
+    * @param {number} challengeId
     * @returns {Promise<Step[]>} Liste des étapes
     */
    list(challengeId) {
@@ -28,10 +28,10 @@ module.exports = class ApiStep extends ApiRoute {
     * @instance
     * @example OlympeApi.steps.getRanking(1, 1, {})
     *
-    * @param {Number} idChallenge
-    * @param {Number} idStep
-    * @param {Object} [query] Filtres
-    * @returns {Promise<Object>} Classement de l'étape
+    * @param {number} idChallenge
+    * @param {number} idStep
+    * @param {object} [query] Filtres
+    * @returns {Promise<object>} Classement de l'étape
     */
    getRanking(idChallenge, idStep, query) {
       const urlAdd = query ? `?${this.api.jsonToFormUrlEncoder(query)}` : ''
@@ -57,7 +57,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @memberof ApiStep
     * @instance
     * @param {string} challengeID
-    * @param {Object} data
+    * @param {object} data
     * @returns {Promise<Step>}
     */
    create(challengeID, data) {
@@ -71,7 +71,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} stepID
-    * @param {Object} data
+    * @param {object} data
     * @returns {Promise<Step>}
     */
    update(challengeID, stepID, data) {
@@ -85,7 +85,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} stepID
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    delete(challengeID, stepID) {
       return this.api.delete(`challenges/${challengeID}/steps/${stepID}`)
@@ -97,7 +97,7 @@ module.exports = class ApiStep extends ApiRoute {
     * @memberof ApiStep
     * @instance
     * @param {string} challengeID
-    * @returns {Promise<Object[]>}
+    * @returns {Promise<object[]>}
     */
    getTeamsAvailable(challengeID) {
       return this.api.get(`challenges/${challengeID}/steps/teams-available`)

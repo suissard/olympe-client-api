@@ -14,7 +14,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @example OlympeApi.pools.list(1)
     * @param {number} challengeID
-    * @param {Object} [query] Filtres
+    * @param {object} [query] Filtres
     * @returns {Promise<Pool[]>} Liste des poules
     */
    list(challengeID, query) {
@@ -30,9 +30,9 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @example OlympeApi.pools.getRanking(1, 1)
     *
-    * @param {Number} challengeID
-    * @param {Number} poolID
-    * @returns {Promise<Object>} Classement de la poule
+    * @param {number} challengeID
+    * @param {number} poolID
+    * @returns {Promise<object>} Classement de la poule
     */
    getRanking(challengeID, poolID) {
       return this.api.get(`challenges/${challengeID}/pools/${poolID}/ranking`)
@@ -56,7 +56,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @memberof ApiPool
     * @instance
     * @param {string} challengeID
-    * @param {Object} data
+    * @param {object} data
     * @returns {Promise<Pool>}
     */
    create(challengeID, data) {
@@ -70,7 +70,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} poolID
-    * @param {Object} data
+    * @param {object} data
     * @returns {Promise<Pool>}
     */
    update(challengeID, poolID, data) {
@@ -84,7 +84,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} poolID
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    delete(challengeID, poolID) {
       return this.api.delete(`challenges/${challengeID}/pools/${poolID}`)
@@ -96,7 +96,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @memberof ApiPool
     * @instance
     * @param {string} challengeID
-    * @returns {Promise<Object[]>}
+    * @returns {Promise<object[]>}
     */
    listConfigs(challengeID) {
       return this.api.get(`challenges/${challengeID}/poolsconfigs`)
@@ -109,7 +109,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} configID
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    getConfig(challengeID, configID) {
       return this.api.get(`challenges/${challengeID}/poolsconfigs/${configID}`)
@@ -121,8 +121,8 @@ module.exports = class ApiPool extends ApiRoute {
     * @memberof ApiPool
     * @instance
     * @param {string} challengeID
-    * @param {Object} data
-    * @returns {Promise<Object>}
+    * @param {object} data
+    * @returns {Promise<object>}
     */
    createConfig(challengeID, data) {
       return this.api.post(`challenges/${challengeID}/poolsconfigs`, data)
@@ -135,8 +135,8 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} configID
-    * @param {Object} data
-    * @returns {Promise<Object>}
+    * @param {object} data
+    * @returns {Promise<object>}
     */
    updateConfig(challengeID, configID, data) {
       return this.api.put(`challenges/${challengeID}/poolsconfigs/${configID}`, data)
@@ -149,7 +149,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} configID
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    deleteConfig(challengeID, configID) {
       return this.api.delete(`challenges/${challengeID}/poolsconfigs/${configID}`)
@@ -162,7 +162,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} poolID
-    * @returns {Promise<Object[]>}
+    * @returns {Promise<object[]>}
     */
    getTeams(challengeID, poolID) {
       return this.api.get(`challenges/${challengeID}/pools/${poolID}/teams`)
@@ -175,7 +175,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} poolID
-    * @returns {Promise<Object[]>}
+    * @returns {Promise<object[]>}
     */
    getTeamsAvailable(challengeID, poolID) {
       return this.api.get(`challenges/${challengeID}/pools/${poolID}/teams/available`)
@@ -188,8 +188,8 @@ module.exports = class ApiPool extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} poolID
-    * @param {Object} data
-    * @returns {Promise<Object>}
+    * @param {object} data
+    * @returns {Promise<object>}
     */
    addTeam(challengeID, poolID, data) {
       return this.api.post(`challenges/${challengeID}/pools/${poolID}/teams`, data)
@@ -203,7 +203,7 @@ module.exports = class ApiPool extends ApiRoute {
     * @param {string} challengeID
     * @param {string} poolID
     * @param {string} teamID
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    removeTeam(challengeID, poolID, teamID) {
       return this.api.delete(`challenges/${challengeID}/pools/${poolID}/teams/${teamID}`)

@@ -14,8 +14,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.get('team_id')
     *
-    * @param {String} teamID Id of team
-    * @param {Object} [fields] Fields permettant de récupérer des clés précises de l'objet user
+    * @param {string} teamID Id of team
+    * @param {object} [fields] Fields permettant de récupérer des clés précises de l'objet user
     * @param {Array<('thirdpartiesDiscord' | 'battlenetBtag' | 'email')>} [fields.userFields]
     * @returns {Promise<Team>} Équipe
     */
@@ -43,8 +43,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.create('Team Name', 'FR')
     *
-    * @param {String} name
-    * @param {String} nationality
+    * @param {string} name
+    * @param {string} nationality
     *
     * @returns {Promise<Team>} Team created
     */
@@ -59,7 +59,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.delete('team_id')
     *
-    * @param {String} teamID
+    * @param {string} teamID
     * @returns {Promise<Object>} Résultat de la suppression
     */
    delete(teamID) {
@@ -73,8 +73,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.putExternalLinks('team_id', { twitter: 'url' })
     *
-    * @param {String} teamID Id de l'équipe
-    * @param {Object} data Réseaux sociaux
+    * @param {string} teamID Id de l'équipe
+    * @param {object} data Réseaux sociaux
     * @returns {Promise<Object>} Résultat de la mise à jour
     */
    putExternalLinks(teamID, data) {
@@ -88,9 +88,9 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.update('team_id', { name: 'New Name' })
     *
-    * @param {String} teamID Team ID
+    * @param {string} teamID Team ID
     * @param {*} data Données à mettre à jour
-    * @param {Boolean} [file=false] Si une image est envoyée, cette variable doit être définie sur `true`
+    * @param {boolean} [file=false] Si une image est envoyée, cette variable doit être définie sur `true`
     * @returns {Promise<Object>} Résultat de la mise à jour
     */
    update(teamID, data, file = false) {
@@ -104,8 +104,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.addRoleToUser('team_id', 'member_id', 'staff')
     *
-    * @param {String} teamID
-    * @param {String} memberID
+    * @param {string} teamID
+    * @param {string} memberID
     * @param {Array} role Allowed values: ['owner', 'president', 'vice president', 'staff', 'communication', 'esport director', 'manager', 'assistant manager', 'head coach', 'video analyst', 'mental coach']
     * @returns {Promise<Object>} Résultat de l'ajout
     */
@@ -120,8 +120,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.removeRoleToUser('team_id', 'member_id', 'staff')
     *
-    * @param {String} teamID
-    * @param {String} memberID
+    * @param {string} teamID
+    * @param {string} memberID
     * @param {Array} role
     * @returns {Promise<Object>} Résultat de la suppression
     */
@@ -136,8 +136,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.removeUser('team_id', 'member_id')
     *
-    * @param {String} teamID
-    * @param {String} memberID
+    * @param {string} teamID
+    * @param {string} memberID
     * @returns {Promise<Object>} Résultat de la suppression
     */
    removeUser(teamID, memberID) {
@@ -151,8 +151,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.updateMemberTags('team_id', 'member_id', 'main tank,main heal')
     *
-    * @param {String} teamID
-    * @param {String} memberID
+    * @param {string} teamID
+    * @param {string} memberID
     * @param {Array} gameRoles List of game roles with comma. Allowed values: ['main tank', 'off tank', 'dps hitscan', 'dps projectile', 'main heal', 'flex heal']. Example: 'main tank,main heal'
     * @returns {Promise<Object>} Résultat de la mise à jour
     */
@@ -248,7 +248,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @instance
     * @example OlympeApi.teams.getPublicActus('team_id')
     *
-    * @param {String} teamID Identifiant de l'utilisateur
+    * @param {string} teamID Identifiant de l'utilisateur
     * @returns {Promise<Object[]>} Liste d'activités
     */
    getPublicActus(teamID) {
@@ -261,7 +261,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @memberof ApiTeam
     * @instance
     * @example OlympeApi.teams.getStats('team_id')
-    * @param {String} teamID => Id of team
+    * @param {string} teamID => Id of team
     * @returns {Promise<Object>} Stats
     */
    getStats(teamID) {
@@ -274,7 +274,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @memberof ApiTeam
     * @instance
     * @example OlympeApi.teams.follow('team_id')
-    * @param {String} teamID => Id of team
+    * @param {string} teamID => Id of team
     * @returns {Promise<Object>}
     */
    follow(teamID) {
@@ -285,7 +285,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @method unfollow
     * @memberof ApiTeam
     * @instance
-    * @param {String} teamID
+    * @param {string} teamID
     * @returns {Promise<Object>}
     */
    unfollow(teamID) {
@@ -297,8 +297,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @method addMember
     * @memberof ApiTeam
     * @instance
-    * @param {String} teamID
-    * @param {Object} data
+    * @param {string} teamID
+    * @param {object} data
     * @returns {Promise<Object>}
     */
    addMember(teamID, data) {
@@ -310,8 +310,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @method assignTicket
     * @memberof ApiTeam
     * @instance
-    * @param {String} teamID
-    * @param {String} ticketsPurchasedID
+    * @param {string} teamID
+    * @param {string} ticketsPurchasedID
     * @returns {Promise<Object>}
     */
    assignTicket(teamID, ticketsPurchasedID) {
@@ -323,7 +323,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @method listTickets
     * @memberof ApiTeam
     * @instance
-    * @param {String} teamID
+    * @param {string} teamID
     * @returns {Promise<Object[]>}
     */
    listTickets(teamID) {
@@ -335,8 +335,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @method unassignTicket
     * @memberof ApiTeam
     * @instance
-    * @param {String} teamID
-    * @param {String} ticketsPurchasedID
+    * @param {string} teamID
+    * @param {string} ticketsPurchasedID
     * @returns {Promise<Object>}
     */
    unassignTicket(teamID, ticketsPurchasedID) {
@@ -348,7 +348,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @method deleteLineup
     * @memberof ApiTeam
     * @instance
-    * @param {String} lineupID
+    * @param {string} lineupID
     * @returns {Promise<Object>}
     */
    deleteLineup(lineupID) {
@@ -360,7 +360,7 @@ module.exports = class ApiTeam extends ApiRoute {
     * @method getLineup
     * @memberof ApiTeam
     * @instance
-    * @param {String} lineupID
+    * @param {string} lineupID
     * @returns {Promise<Object>}
     */
    getLineup(lineupID) {
@@ -372,8 +372,8 @@ module.exports = class ApiTeam extends ApiRoute {
     * @method updateLineup
     * @memberof ApiTeam
     * @instance
-    * @param {String} lineupID
-    * @param {Object} data
+    * @param {string} lineupID
+    * @param {object} data
     * @returns {Promise<Object>}
     */
    updateLineup(lineupID, data) {

@@ -14,8 +14,8 @@ module.exports = class ApiTicket extends ApiRoute {
     * @instance
     * @example OlympeApi.tickets.list(1, true)
     *
-    * @param {Number} challengeId Challenge ID
-    * @param {Boolean} [active]      [Query] Return only challenges with tickets not expired (this variable must be added in url as ?foo=bar)
+    * @param {number} challengeId Challenge ID
+    * @param {boolean} [active]      [Query] Return only challenges with tickets not expired (this variable must be added in url as ?foo=bar)
     * @returns {Promise<Ticket[]>} Liste des tickets
     */
    list(challengeId, active) {
@@ -30,11 +30,11 @@ module.exports = class ApiTicket extends ApiRoute {
     * @instance
     * @example OlympeApi.tickets.buy(1, 1, 'team_id', 'team')
     *
-    * @param {Number} challengeId Challenge ID
-    * @param {Number} idTicket    Ticket ID
-    * @param {String} teamID      Team ID
-    * @param {String} ticketType  Ticket type: personal or team
-    * @returns {Promise<Object>} Résultat de l'achat
+    * @param {number} challengeId Challenge ID
+    * @param {number} idTicket    Ticket ID
+    * @param {string} teamID      Team ID
+    * @param {string} ticketType  Ticket type: personal or team
+    * @returns {Promise<object>} Résultat de l'achat
     */
    buy(challengeId, idTicket, teamID, ticketType) {
       return this.api.post(`challenges/${challengeId}/tickets/${idTicket}`, { idTeam: teamID, ticketType })
@@ -59,7 +59,7 @@ module.exports = class ApiTicket extends ApiRoute {
     * @memberof ApiTicket
     * @instance
     * @param {string} challengeID
-    * @param {Object} data
+    * @param {object} data
     * @returns {Promise<Ticket>}
     */
    create(challengeID, data) {
@@ -73,7 +73,7 @@ module.exports = class ApiTicket extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} ticketID
-    * @param {Object} data
+    * @param {object} data
     * @returns {Promise<Ticket>}
     */
    update(challengeID, ticketID, data) {
@@ -87,7 +87,7 @@ module.exports = class ApiTicket extends ApiRoute {
     * @instance
     * @param {string} challengeID
     * @param {string} ticketID
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    delete(challengeID, ticketID) {
       return this.api.delete(`challenges/${challengeID}/tickets/${ticketID}`)
@@ -99,7 +99,7 @@ module.exports = class ApiTicket extends ApiRoute {
     * @memberof ApiTicket
     * @instance
     * @param {string} id
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    deleteTicketPurchased(id) {
       return this.api.delete(`ticketspurchased/${id}`)
@@ -111,7 +111,7 @@ module.exports = class ApiTicket extends ApiRoute {
     * @memberof ApiTicket
     * @instance
     * @param {string} sourceTicketID
-    * @returns {Promise<Object>}
+    * @returns {Promise<object>}
     */
    replaceTicketPurchased(sourceTicketID) {
       return this.api.post(`ticketspurchased/${sourceTicketID}/replace`)

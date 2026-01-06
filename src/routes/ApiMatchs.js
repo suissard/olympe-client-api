@@ -17,14 +17,14 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.list({ active: true })
     *
-    * @param {Object} query Filtres
-    * @param {String} [query.poolID]  Filter by pool ID
-    * @param {String} [query.teamID]  Filter by team ID
-    * @param {String} [query.challengesID]  Filter by challenge ID. Allowed values: list of challengeID separated by comma. Like '1,2,3'
-    * @param {String} [query.casterID]   Filter by casterID. Display matchs casted by this userID. Allowed values: ['all', 'none', 'userID like abc-abc-abc']
-    * @param {String} [query.scheduled]  Filter by scheduled date. Allowed values: ['future', 'past', 'live']
-    * @param {String} [query.active]  Filter by active steps. Allowed values: ['true']
-    * @param {Number} [query.limit]   Limit the number of results
+    * @param {object} query Filtres
+    * @param {string} [query.poolID]  Filter by pool ID
+    * @param {string} [query.teamID]  Filter by team ID
+    * @param {string} [query.challengesID]  Filter by challenge ID. Allowed values: list of challengeID separated by comma. Like '1,2,3'
+    * @param {string} [query.casterID]   Filter by casterID. Display matchs casted by this userID. Allowed values: ['all', 'none', 'userID like abc-abc-abc']
+    * @param {string} [query.scheduled]  Filter by scheduled date. Allowed values: ['future', 'past', 'live']
+    * @param {string} [query.active]  Filter by active steps. Allowed values: ['true']
+    * @param {number} [query.limit]   Limit the number of results
     * @returns {Promise<Match[]>} Liste des matchs
     */
    list(query) {
@@ -40,8 +40,8 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.get('match_id')
     *
-    * @param {String} matchID
-    * @param {Object} [fields] Fields permettant de récupérer des clés précises de l'objet user
+    * @param {string} matchID
+    * @param {object} [fields] Fields permettant de récupérer des clés précises de l'objet user
     * @param {Array<('thirdpartiesDiscord' | 'battlenetBtag' | 'email')>} [fields.userFields]
     * @returns {Promise<Match>} Match
     */
@@ -57,10 +57,10 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.proposeMatchSchedule(1, 1, 'team_id', 'match_id', new Date())
     *
-    * @param {Number} challengeID Challenge ID
-    * @param {Number} poolID Pool ID
-    * @param {String} teamID Team ID
-    * @param {String} matchID Match ID
+    * @param {number} challengeID Challenge ID
+    * @param {number} poolID Pool ID
+    * @param {string} teamID Team ID
+    * @param {string} matchID Match ID
     * @param {Date} date Timestamp
     * @returns {Promise<Object>} Résultat de la proposition
     */
@@ -78,9 +78,9 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.replyToMatchSchedule('team_id', 'match_id', 123, true)
     *
-    * @param {String} teamID Team ID
-    * @param {String} matchID Match ID
-    * @param {Number} idDate Date ID
+    * @param {string} teamID Team ID
+    * @param {string} matchID Match ID
+    * @param {number} idDate Date ID
     * @param {boolean} accepted false: date refused / true: date accepted
     * @returns {Promise<Object>} Résultat de la réponse
     */
@@ -95,10 +95,10 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.removeScheduledMatch(1, 1, 'team_id', 'match_id')
     *
-    * @param {Number} challengeID Challenge ID
-    * @param {Number} poolID Pool ID
-    * @param {String} teamID Team ID
-    * @param {String} matchID Match ID
+    * @param {number} challengeID Challenge ID
+    * @param {number} poolID Pool ID
+    * @param {string} teamID Team ID
+    * @param {string} matchID Match ID
     * @returns {Promise<Object>} Résultat de la suppression
     */
    removeScheduledMatch(challengeID, poolID, teamID, matchID) {
@@ -113,9 +113,9 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.addAscore('team_id', 'match_id', [{"team1": 3, "team2": 2}])
     *
-    * @param {String} teamID Team ID
-    * @param {String} matchID Match ID
-    * @param {Object[]} scores Included teamIDs, and each scores as array. Format: {"scores": [{"team1": 0, "team2": 0}]}
+    * @param {string} teamID Team ID
+    * @param {string} matchID Match ID
+    * @param {object[]} scores Included teamIDs, and each scores as array. Format: {"scores": [{"team1": 0, "team2": 0}]}
     * @returns {Promise<Object>} Résultat de l'ajout
     */
    addAscore(teamID, matchID, scores) {
@@ -129,7 +129,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.removeScore('match_id')
     *
-    * @param {String} matchID Match ID
+    * @param {string} matchID Match ID
     * @returns {Promise<Object>} Résultat de la suppression
     */
    removeScore(matchID) {
@@ -144,7 +144,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.assignCaster('match_id')
     *
-    * @param {String} matchID Match ID
+    * @param {string} matchID Match ID
     * @returns {Promise<Object>} Résultat de l'ajout
     */
    assignCaster(matchID) {
@@ -158,7 +158,7 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.removeCaster('match_id')
     *
-    * @param {String} matchID Match ID
+    * @param {string} matchID Match ID
     * @returns {Promise<Object>} Résultat de la suppression
     */
    removeCaster(matchID) {
@@ -173,8 +173,8 @@ module.exports = class ApiMatch extends ApiRoute {
     * @instance
     * @example OlympeApi.matchs.assignLineup('match_id', 123)
     *
-    * @param {String} matchID
-    * @param {Number} lineupID
+    * @param {string} matchID
+    * @param {number} lineupID
     */
    assignLineup(matchID, lineupID) {
       return this.api.post(`matchs/${matchID}/lineups`, { lineupID })

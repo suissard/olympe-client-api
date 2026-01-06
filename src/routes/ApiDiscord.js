@@ -12,7 +12,7 @@ module.exports = class ApiDiscord extends ApiRoute {
     * @memberof ApiDiscord
     * @instance
     * @example OlympeApi.discord.getDiscordAuthUrl()
-    * @returns {Promise<Object>} URL d'authentification
+    * @returns {Promise<object>} URL d'authentification
     */
    getDiscordAuthUrl() {
       return this.api.get('html/auth/discord/start')

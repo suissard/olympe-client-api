@@ -14,8 +14,8 @@ module.exports = class ApiUser extends ApiRoute {
     * @instance
     * @example OlympeApi.users.get('user_id')
     *
-    * @param {String} id
-    * @param {Object} [fields] Fields permettant de récupérer des clés précises de l'objet user
+    * @param {string} id
+    * @param {object} [fields] Fields permettant de récupérer des clés précises de l'objet user
     * @param {Array<('thirdpartiesDiscord' | 'battlenetBtag' | 'email')>} [fields.fields]
     *
     * @returns {Promise<User>} Renvoie un objet d'utilisateur
@@ -31,7 +31,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @instance
     * @deprecated Cette fonction va rapidement devenir obsolete, ne pas trop se baser dessus.
     * @example OlympeApi.users.search('user_id')
-    * @param {String} id
+    * @param {string} id
     * @returns {Promise<User>}
     */
    search(id) {
@@ -51,7 +51,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @instance
     * @example OlympeApi.users.getPrivateActus('user_id')
     *
-    * @param {String} userID Identifiant de l'utilisateur
+    * @param {string} userID Identifiant de l'utilisateur
     * @returns {Promise<Object[]>} Liste d'activités
     */
    getPrivateActus(userID) {
@@ -65,7 +65,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @instance
     * @example OlympeApi.users.getPublicActus('user_id')
     *
-    * @param {String} userID Identifiant de l'utilisateur
+    * @param {string} userID Identifiant de l'utilisateur
     * @returns {Promise<Object[]>} Liste d'activités
     */
    // Non utilisé
@@ -80,7 +80,7 @@ module.exports = class ApiUser extends ApiRoute {
     * @instance
     * @example OlympeApi.users.listInvitationsToJoinTeam('user_id')
     * 
-    * @param {String} userID Identifiant de l'utilisateur
+    * @param {string} userID Identifiant de l'utilisateur
     * @returns {Promise<Object[]>} Liste des invitations
     */
    listInvitationsToJoinTeam(userID) {
@@ -94,8 +94,8 @@ module.exports = class ApiUser extends ApiRoute {
     * @instance
     * @example OlympeApi.users.putExternalLinks('user_id', { twitter: 'url' })
     *
-    * @param {String} userId Identifiant de l'utilisateur
-    * @param {Object} data Données des liens externes
+    * @param {string} userId Identifiant de l'utilisateur
+    * @param {object} data Données des liens externes
     * @returns {Promise<User>} Utilisateur mis à jour
     */
    putExternalLinks(userId, data) {
@@ -109,8 +109,8 @@ module.exports = class ApiUser extends ApiRoute {
     * @instance
     * @example OlympeApi.users.update('user_id', { name: 'New Name' })
     *
-    * @param {String} id UserID
-    * @param {Object} data Data to Update (ex : name=toto)
+    * @param {string} id UserID
+    * @param {object} data Data to Update (ex : name=toto)
     * @param {boolean} [file=false] Si le body est un fichier
     * @returns {Promise<User>} Utilisateur mis à jour
     */
