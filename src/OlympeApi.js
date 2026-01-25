@@ -228,8 +228,9 @@ module.exports = class OlympeApi {
 		return new Promise((resolve, reject) => {
 			this.fetch(`${this.getApiUrl()}${url}`, request)
 				.then(async (response) => {
+					let data
 					if (!response?.ok) throw { data, response };
-					const data = await response
+					data = await response
 						.json()
 						.catch(e => { throw { data, response } });
 
